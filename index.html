@@ -53,13 +53,47 @@
   </div>
 </div>
 
-    <!-- Study Plan Screen -->
-    <div class="screen" id="study-plan">
-      <div class="screen-center">
-        <h1>Study Plan</h1>
-        <p>Plan your CISSP study schedule and tasks.</p>
+   <!-- Study Plan Screen -->
+<div class="screen" id="study-plan">
+  <div class="screen-center">
+    <h1>Study Plan</h1>
+
+    <!-- Domain Title -->
+    <div class="study-plan-domain">Domain 1: Security & Risk Management</div>
+
+    <!-- Checklist -->
+    <div class="study-plan-checklist">
+      <div class="study-plan-task">
+        <input type="checkbox" id="task1">
+        <label for="task1">Read Governance Principles (30 min)</label>
+      </div>
+      <div class="study-plan-task">
+        <input type="checkbox" id="task2">
+        <label for="task2">Watch Risk Management Lecture (30 min)</label>
+      </div>
+      <div class="study-plan-task">
+        <input type="checkbox" id="task3">
+        <label for="task3">Complete 10 Practice Questions (30 min)</label>
+      </div>
+      <div class="study-plan-task">
+        <input type="checkbox" id="task4">
+        <label for="task4">Review Compliance Frameworks (20 min)</label>
       </div>
     </div>
+
+    <!-- Study Time Selector -->
+    <div class="study-plan-time">
+      <label for="study-time" class="time-label">Select Study Time</label>
+      <select name="study-time" id="study-time">
+        <option value="8:00pm">8:00 PM - 9:30 PM</option>
+        <option value="9:30pm" selected>9:30 PM - 11:00 PM</option>
+        <option value="10:00pm">10:00 PM - 12:00 AM</option>
+        <option value="5:00am">5:00 AM - 6:30 AM</option>
+        <option value="custom">Custom</option>
+      </select>
+    </div>
+  </div>
+</div>
 
     <!-- Lab Tracker Screen -->
     <div class="screen" id="lab-tracker">
