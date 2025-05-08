@@ -143,9 +143,8 @@ domainToggles.forEach(toggle => {
     if (content) {
       content.classList.toggle('active');
      const domainTitle = toggle.textContent.replace(/^▶️|▼/, '').trim();
-toggle.textContent = content.classList.contains('active')
-  ? `▼ ${domainTitle}`
-  : `▶️ ${domainTitle}`;
+toggle.textContent = content.classList.contains('active')const labelText = toggle.innerText.replace(/^▶️|▼/, '').trim();
+toggle.innerHTML = `${content.classList.contains('active') ? '▼' : '▶️'} ${labelText} <span class="domain-level">Level 1</span>`;
     }
   });
 });
