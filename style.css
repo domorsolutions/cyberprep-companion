@@ -216,6 +216,14 @@ body {
   touch-action: manipulation;
   transition: border 0.2s ease;
 }
+.study-content {
+  display: none;
+  padding-top: 10px;
+}
+
+.study-content.active {
+  display: block;
+}
 
 /* Study Plan - Dark Mode Styling */
 body.dark .study-plan-task {
