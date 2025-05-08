@@ -8,146 +8,74 @@
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
 </head>
 <body>
-  <div class="app-container">
+<div class="app-container">
+  <main id="app">
     <!-- Dashboard Screen -->
     <div class="screen active" id="dashboard">
-      <h1>Dashboard</h1>
-      <h2>Today's Tasks</h2>
-      <div class="task-card">
-        <span>Study: Security & Risk Management</span>
-        <span class="status">Pending</span>
-      </div>
-      <div class="task-card">
-        <span>Lab: Nmap Port Scanning</span>
-        <span class="status">Pending</span>
-      </div>
-      <div class="progress-container">
-        <div class="progress-label">Study Progress: 7%</div>
-        <div class="progress-bar">
-          <div class="progress-fill" style="width: 7%;"></div>
-        </div>
-      </div>
-      <div class="stats-grid">
-        <div class="stat-card">
-          <div class="value">13</div>
-          <div class="label">Days Left</div>
-        </div>
-        <div class="stat-card">
-          <div class="value">0</div>
-          <div class="label">Labs Done</div>
-        </div>
-      </div>
-      <p class="quote">"Stay focused, stay secure: your CISSP journey starts today!"</p>
-    </div>
-
-    <!-- Daily Planner Screen -->
-    <div class="screen" id="daily-planner">
-      <h1>Daily Planner</h1>
-      <div class="planner-section">
-        <div class="planner-tasks">
-          <div class="draggable" draggable="true">Work</div>
-          <div class="draggable" draggable="true">Family</div>
-          <div class="draggable" draggable="true">Study</div>
-          <div class="draggable" draggable="true">Labs</div>
-        </div>
-        <div class="planner-columns">
-          <div class="planner-block" id="morning">
-            <h3>Morning</h3>
-          </div>
-          <div class="planner-block" id="afternoon">
-            <h3>Afternoon</h3>
-          </div>
-          <div class="planner-block" id="evening">
-            <h3>Evening</h3>
-          </div>
-          <div class="planner-block" id="night">
-            <h3>Night</h3>
-          </div>
-        </div>
+      <div class="screen-center">
+        <h1>Dashboard</h1>
+        <p>Welcome to CyberPrep Companion! Track your CISSP study progress and lab work here.</p>
       </div>
     </div>
 
     <!-- Study Plan Screen -->
     <div class="screen" id="study-plan">
-      <h1>Study Plan</h1>
-      <div class="study-plan-domain">Domain 1: Security & Risk Management</div>
-      <div class="study-plan-checklist">
-        <div class="study-plan-task">
-          <input type="checkbox" id="task1">
-          <label for="task1">Read Governance Principles (30 min)</label>
-        </div>
-        <div class="study-plan-task">
-          <input type="checkbox" id="task2">
-          <label for="task2">Watch Risk Management Lecture (30 min)</label>
-        </div>
-        <div class="study-plan-task">
-          <input type="checkbox" id="task3">
-          <label for="task3">Complete 10 Practice Questions (30 min)</label>
-        </div>
-        <div class="study-plan-task">
-          <input type="checkbox" id="task4">
-          <label for="task4">Review Compliance Frameworks (20 min)</label>
-        </div>
-      </div>
-      <div class="study-plan-time">
-        <label for="study-time" class="time-label">Select Study Time</label>
-        <select name="study-time" id="study-time">
-          <option value="8:00pm">8:00 PM - 9:30 PM</option>
-          <option value="9:30pm" selected>9:30 PM - 11:00 PM</option>
-          <option value="10:00pm">10:00 PM - 12:00 AM</option>
-          <option value="5:00am">5:00 AM - 6:30 AM</option>
-          <option value="custom">Custom</option>
-        </select>
+      <div class="screen-center">
+        <h1>Study Plan</h1>
+        <p>Plan your CISSP study schedule and tasks.</p>
       </div>
     </div>
 
     <!-- Lab Tracker Screen -->
     <div class="screen" id="lab-tracker">
-      <h1>Lab Tracker</h1>
-      <p>Log and monitor your vulnerability lab practice with tools like Nmap and Metasploit.</p>
+      <div class="screen-center">
+        <h1>Lab Tracker</h1>
+        <p>Log and monitor your vulnerability lab practice with tools like Nmap and Metasploit.</p>
+      </div>
     </div>
 
     <!-- Resources Screen -->
     <div class="screen" id="resources">
-      <h1>Resources</h1>
-      <p>Access free CISSP study materials and lab tool guides.</p>
+      <div class="screen-center">
+        <h1>Resources</h1>
+        <p>Access free CISSP study materials and lab tool guides.</p>
+      </div>
     </div>
 
     <!-- Settings Screen -->
     <div class="screen" id="settings">
-      <h1>Settings</h1>
-      <p>Customize your app experience and preferences.</p>
+      <div class="screen-center">
+        <h1>Settings</h1>
+        <p>Customize your app experience and preferences.</p>
+      </div>
     </div>
-  </div>
+  </main>
+</div>
 
-  <!-- Bottom Navigation Bar -->
-  <nav class="bottom-nav">
-    <a href="#dashboard" class="nav-btn active" data-screen="dashboard">
-      <i class="fas fa-home"></i>
-      Dashboard
-    </a>
-    <a href="#daily-planner" class="nav-btn" data-screen="daily-planner">
-      <i class="fas fa-clock"></i>
-      Planner
-    </a>
-    <a href="#study-plan" class="nav-btn" data-screen="study-plan">
-      <i class="fas fa-calendar"></i>
-      Study Plan
-    </a>
-    <a href="#lab-tracker" class="nav-btn" data-screen="lab-tracker">
-      <i class="fas fa-flask"></i>
-      Lab Tracker
-    </a>
-    <a href="#resources" class="nav-btn" data-screen="resources">
-      <i class="fas fa-book"></i>
-      Resources
-    </a>
-    <a href="#settings" class="nav-btn" data-screen="settings">
-      <i class="fas fa-cog"></i>
-      Settings
-    </a>
-  </nav>
+<!-- Bottom Navigation -->
+<nav class="bottom-nav" role="tablist">
+  <a href="#dashboard" class="nav-btn active" data-screen="dashboard" role="tab" aria-label="Open Dashboard tab">
+    <i class="fas fa-home"></i>
+    Dashboard
+  </a>
+  <a href="#study-plan" class="nav-btn" data-screen="study-plan" role="tab" aria-label="Open Study Plan tab">
+    <i class="fas fa-calendar"></i>
+    Study Plan
+  </a>
+  <a href="#lab-tracker" class="nav-btn" data-screen="lab-tracker" role="tab" aria-label="Open Lab Tracker tab">
+    <i class="fas fa-flask"></i>
+    Lab Tracker
+  </a>
+  <a href="#resources" class="nav-btn" data-screen="resources" role="tab" aria-label="Open Resources tab">
+    <i class="fas fa-book"></i>
+    Resources
+  </a>
+  <a href="#settings" class="nav-btn" data-screen="settings" role="tab" aria-label="Open Settings tab">
+    <i class="fas fa-cog"></i>
+    Settings
+  </a>
+</nav>
 
-  <script src="main.js"></script>
+<script src="main.js"></script>
 </body>
 </html>
