@@ -142,9 +142,10 @@ domainToggles.forEach(toggle => {
     const content = document.getElementById(targetId);
     if (content) {
       content.classList.toggle('active');
-      toggle.textContent = content.classList.contains('active')
-        ? `▼ ${toggle.textContent.slice(2)}`
-        : `▶️ ${toggle.textContent.slice(2)}`;
+     const domainTitle = toggle.textContent.replace(/^▶️|▼/, '').trim();
+toggle.textContent = content.classList.contains('active')
+  ? `▼ ${domainTitle}`
+  : `▶️ ${domainTitle}`;
     }
   });
 });
