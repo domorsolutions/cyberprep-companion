@@ -212,6 +212,43 @@ p {
   touch-action: manipulation;
 }
 
+/* Daily Planner Layout */
+.planner-tasks {
+  display: flex;
+  gap: 10px;
+  margin-bottom: 20px;
+  flex-wrap: wrap;
+}
+
+.draggable {
+  background: #fff;
+  padding: 10px 16px;
+  border-radius: 8px;
+  box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+  cursor: grab;
+  user-select: none;
+}
+
+.planner-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 20px;
+}
+
+.planner-block {
+  background: #fff;
+  border-radius: 12px;
+  padding: 15px;
+  min-height: 100px;
+  box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+}
+
+.planner-block h3 {
+  font-size: 16px;
+  margin-bottom: 10px;
+  color: var(--primary);
+}
+
 @media (min-width: 768px) {
   .app-container {
     max-width: 600px;
