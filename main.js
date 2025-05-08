@@ -1,76 +1,80 @@
-// Navigation logic for tab switching
-const navItems = document.querySelectorAll('.nav-btn');
-const screens = document.querySelectorAll('.screen');
-
-navItems.forEach(item => {
-  item.addEventListener('click', (e) => {
-    e.preventDefault();
-    const screenId = item.getAttribute('data-screen');
-
-    navItems.forEach(nav => nav.classList.remove('active'));
+// Wait for DOM to be fully loaded
+document.addEventListener('DOMContentLoaded', () => {
+  // Function to show selected screen and update navigation
+  function showScreen(screenId) {
+    const screens = document.querySelectorAll('.screen');
     screens.forEach(screen => screen.classList.remove('active'));
 
-    item.classList.add('active');
-    document.getElementById(screenId).classList.add('active');
+    const selectedScreen = document.getElementById(screenId);
+    if (selectedScreen) {
+      selectedScreen.classList.add('active');
+    }
+
+    const navItems = document.querySelectorAll('.nav-btn');
+    navItems.forEach(nav => nav.classList.remove('active'));
+
+    const activeNav = document.querySelector(`[data-screen="${screenId}"]`);
+    if (activeNav) {
+      activeNav.classList.add('active');
+    }
 
     localStorage.setItem('activeScreen', screenId);
-  });
-});
+  }
 
-// Restore last active screen from localStorage
-window.addEventListener('DOMContentLoaded', () => {
-  const savedScreen = localStorage.getItem('activeScreen');
-  if (savedScreen) {
-    const targetTab = document.querySelector(`.nav-btn[data-screen="${savedScreen}"]`);
-    const targetScreen = document.getElementById(savedScreen);
-    if (targetTab && targetScreen) {
-      navItems.forEach(nav => nav.classList.remove('active'));
-      screens.forEach(screen => screen.classList.remove('active'));
-      targetTab.classList.add('active');
-      targetScreen.classList.add('active');
+  // Add click event listeners to nav items
+  const navItems = document.querySelectorAll('.nav-btn');
+  navItems.forEach(item => {
+    item.addEventListener('click', (e) => {
+      e.preventDefault();
+      const screenId = item.getAttribute('data-screen');
+      showScreen(screenId);
+    });
+  });
+
+  // On load, get the last active screen from localStorage or default to dashboard
+  const lastActiveScreen = localStorage.getItem('activeScreen') || 'dashboard';
+  showScreen(lastActiveScreen);
+
+  if (typeof updateProgressBar === 'function') {
+    updateProgressBar();
+  }
+
+  // Study Plan checklist persistence and progress update
+  const studyCheckboxes = document.querySelectorAll('.study-plan-task input[type="checkbox"]');
+  studyCheckboxes.forEach(checkbox => {
+    checkbox.addEventListener('change', () => {
+      localStorage.setItem(checkbox.id, checkbox.checked);
+      updateProgressBar();
+    });
+    const savedState = localStorage.getItem(checkbox.id);
+    if (savedState) checkbox.checked = savedState === 'true';
+  });
+
+  function updateProgressBar() {
+    const total = studyCheckboxes.length;
+    const completed = Array.from(studyCheckboxes).filter(cb => cb.checked).length;
+    const percent = total === 0 ? 0 : Math.round((completed / total) * 100);
+    const progressFill = document.querySelector('.progress-fill');
+    const progressLabel = document.querySelector('.progress-label');
+    if (progressFill && progressLabel) {
+      progressFill.style.width = `${percent}%`;
+      progressLabel.textContent = `Study Progress: ${percent}%`;
     }
   }
 
-  updateProgressBar();
-});
-
-// Study Plan checklist persistence and progress update
-const studyCheckboxes = document.querySelectorAll('.study-plan-task input[type="checkbox"]');
-studyCheckboxes.forEach(checkbox => {
-  checkbox.addEventListener('change', () => {
-    localStorage.setItem(checkbox.id, checkbox.checked);
-    updateProgressBar();
-  });
-  const savedState = localStorage.getItem(checkbox.id);
-  if (savedState) checkbox.checked = savedState === 'true';
-});
-
-function updateProgressBar() {
-  const total = studyCheckboxes.length;
-  const completed = Array.from(studyCheckboxes).filter(cb => cb.checked).length;
-  const percent = total === 0 ? 0 : Math.round((completed / total) * 100);
-  const progressFill = document.querySelector('.progress-fill');
-  const progressLabel = document.querySelector('.progress-label');
-  if (progressFill && progressLabel) {
-    progressFill.style.width = `${percent}%`;
-    progressLabel.textContent = `Study Progress: ${percent}%`;
+  // Study Plan time selector persistence
+  const studyTimeSelect = document.querySelector('#study-time');
+  if (studyTimeSelect) {
+    studyTimeSelect.addEventListener('change', () => {
+      localStorage.setItem('study-time', studyTimeSelect.value);
+    });
+    const savedTime = localStorage.getItem('study-time');
+    if (savedTime) {
+      studyTimeSelect.value = savedTime;
+    }
   }
-}
 
-// Study Plan time selector persistence
-const studyTimeSelect = document.querySelector('#study-time');
-if (studyTimeSelect) {
-  studyTimeSelect.addEventListener('change', () => {
-    localStorage.setItem('study-time', studyTimeSelect.value);
-  });
-  const savedTime = localStorage.getItem('study-time');
-  if (savedTime) {
-    studyTimeSelect.value = savedTime;
-  }
-}
-
-// Daily Planner drag & drop
-window.addEventListener('DOMContentLoaded', () => {
+  // Daily Planner drag & drop
   const draggables = document.querySelectorAll('.draggable');
   const dropzones = document.querySelectorAll('.planner-block');
 
@@ -91,7 +95,6 @@ window.addEventListener('DOMContentLoaded', () => {
     });
   });
 
-  // Restore saved planner layout
   dropzones.forEach(zone => {
     const zoneId = zone.getAttribute('id');
     const saved = localStorage.getItem(`planner-${zoneId}`);
@@ -100,7 +103,6 @@ window.addEventListener('DOMContentLoaded', () => {
     }
   });
 
-  // Save on drop
   dropzones.forEach(zone => {
     zone.addEventListener('drop', () => {
       const zoneId = zone.getAttribute('id');
