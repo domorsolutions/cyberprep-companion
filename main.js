@@ -30,17 +30,32 @@ window.addEventListener('DOMContentLoaded', () => {
       targetScreen.classList.add('active');
     }
   }
+
+  updateProgressBar();
 });
 
-// Study Plan checklist persistence
+// Study Plan checklist persistence and progress update
 const studyCheckboxes = document.querySelectorAll('.study-plan-task input[type="checkbox"]');
 studyCheckboxes.forEach(checkbox => {
   checkbox.addEventListener('change', () => {
     localStorage.setItem(checkbox.id, checkbox.checked);
+    updateProgressBar();
   });
   const savedState = localStorage.getItem(checkbox.id);
   if (savedState) checkbox.checked = savedState === 'true';
 });
+
+function updateProgressBar() {
+  const total = studyCheckboxes.length;
+  const completed = Array.from(studyCheckboxes).filter(cb => cb.checked).length;
+  const percent = total === 0 ? 0 : Math.round((completed / total) * 100);
+  const progressFill = document.querySelector('.progress-fill');
+  const progressLabel = document.querySelector('.progress-label');
+  if (progressFill && progressLabel) {
+    progressFill.style.width = `${percent}%`;
+    progressLabel.textContent = `Study Progress: ${percent}%`;
+  }
+}
 
 // Study Plan time selector persistence
 const studyTimeSelect = document.querySelector('#study-time');
