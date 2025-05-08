@@ -21,7 +21,15 @@ document.addEventListener('DOMContentLoaded', () => {
     if (activeNav) {
       activeNav.classList.add('active');
     }
+
+    // Store the selected screen ID in localStorage
+    localStorage.setItem('activeScreen', screenId);
   }
+
+  // Check localStorage on load and show last active tab, default to dashboard
+  const lastActiveScreen = localStorage.getItem('activeScreen');
+  const initialScreen = lastActiveScreen || 'dashboard';
+  showScreen(initialScreen);
 
   // Add click event listeners to nav items
   const navItems = document.querySelectorAll('.nav-item');
@@ -32,7 +40,4 @@ document.addEventListener('DOMContentLoaded', () => {
       showScreen(screenId);
     });
   });
-
-  // Initialize with Dashboard active
-  showScreen('dashboard');
 });
