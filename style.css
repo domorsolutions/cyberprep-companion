@@ -125,7 +125,22 @@ body {
   flex: 1;
   cursor: pointer;
 }
+/* Study Plan - Dark Mode Styling */
+body.dark .study-plan-task {
+  background: #1e1e1e;
+}
 
+body.dark .study-plan-task:hover {
+  background: #2a2a2a;
+}
+
+body.dark .study-plan-task label {
+  color: #ddd;
+}
+
+body.dark .study-plan-task input[type="checkbox"] {
+  accent-color: #00e676;
+}
 
 /* Bottom Navigation */
 .bottom-nav {
