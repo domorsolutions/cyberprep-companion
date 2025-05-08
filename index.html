@@ -1,69 +1,41 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>CyberPrep Companion</title>
-  <link rel="stylesheet" href="style.css">
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
-</head>
-<body>
 <main id="app">
   <!-- Dashboard Screen -->
   <div class="screen active" id="dashboard">
-    <h1>Dashboard</h1>
-    <p>Welcome to CyberPrep Companion! Track your CISSP study progress and lab work here.</p>
+    <div class="screen-center">
+      <h1>Dashboard</h1>
+      <p>Welcome to CyberPrep Companion! Track your CISSP study progress and lab work here.</p>
+    </div>
   </div>
 
   <!-- Study Plan Screen -->
   <div class="screen" id="study-plan">
-    <h1>Study Plan</h1>
-    <p>Plan your CISSP study schedule and tasks.</p>
+    <div class="screen-center">
+      <h1>Study Plan</h1>
+      <p>Plan your CISSP study schedule and tasks.</p>
+    </div>
   </div>
 
   <!-- Lab Tracker Screen -->
   <div class="screen" id="lab-tracker">
-    <h1>Lab Tracker</h1>
-    <p>Log and monitor your vulnerability lab practice with tools like Nmap and Metasploit.</p>
+    <div class="screen-center">
+      <h1>Lab Tracker</h1>
+      <p>Log and monitor your vulnerability lab practice with tools like Nmap and Metasploit.</p>
+    </div>
   </div>
 
   <!-- Resources Screen -->
   <div class="screen" id="resources">
-    <h1>Resources</h1>
-    <p>Access free CISSP study materials and lab tool guides.</p>
+    <div class="screen-center">
+      <h1>Resources</h1>
+      <p>Access free CISSP study materials and lab tool guides.</p>
+    </div>
   </div>
 
   <!-- Settings Screen -->
   <div class="screen" id="settings">
-    <h1>Settings</h1>
-    <p>Customize your app experience and preferences.</p>
+    <div class="screen-center">
+      <h1>Settings</h1>
+      <p>Customize your app experience and preferences.</p>
+    </div>
   </div>
 </main>
-
-<!-- Bottom Navigation -->
-<nav class="bottom-nav" role="tablist">
-  <a href="#dashboard" class="nav-item active" data-screen="dashboard" role="tab" aria-label="Open Dashboard tab">
-    <i class="fas fa-home"></i>
-    Dashboard
-  </a>
-  <a href="#study-plan" class="nav-item" data-screen="study-plan" role="tab" aria-label="Open Study Plan tab">
-    <i class="fas fa-calendar"></i>
-    Study Plan
-  </a>
-  <a href="#lab-tracker" class="nav-item" data-screen="lab-tracker" role="tab" aria-label="Open Lab Tracker tab">
-    <i class="fas fa-flask"></i>
-    Lab Tracker
-  </a>
-  <a href="#resources" class="nav-item" data-screen="resources" role="tab" aria-label="Open Resources tab">
-    <i class="fas fa-book"></i>
-    Resources
-  </a>
-  <a href="#settings" class="nav-item" data-screen="settings" role="tab" aria-label="Open Settings tab">
-    <i class="fas fa-cog"></i>
-    Settings
-  </a>
-</nav>
-
-<script src="main.js"></script>
-</body>
-</html>
