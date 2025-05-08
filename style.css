@@ -35,6 +35,7 @@ body {
   height: calc(100vh - 60px); /* Match bottom nav height */
   overflow-y: auto; /* Scrollable if content overflows */
   -webkit-overflow-scrolling: touch; /* Smooth scrolling on mobile Safari */
+  transition: opacity 0.3s ease;
 }
 
 .screen.active {
@@ -47,9 +48,12 @@ body {
 /* Screen Center Container */
 .screen-center {
   padding: 20px;
-  max-width: 90%; /* Readable width on mobile */
+  max-width: 90%;
   text-align: center;
-  width: 100%; /* Ensure full width for centering */
+  width: 100%;
+  background: #fff;
+  border-radius: 12px;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.05);
 }
 
 /* Bottom Navigation */
@@ -97,7 +101,7 @@ body {
   margin-bottom: 4px;
 }
 
-/* Progress Bar Styles (Placeholder) */
+/* Progress Bar Styles */
 .progress-container {
   margin: 20px 0;
 }
@@ -132,10 +136,23 @@ body {
   }
 
   .screen-center {
-    max-width: 500px; /* Wider content on desktop */
+    max-width: 500px;
   }
 
   .nav-btn {
-    font-size: 14px; /* Slightly larger text on desktop */
+    font-size: 14px;
+  }
+}
+
+/* Optional: Dark Mode Support */
+@media (prefers-color-scheme: dark) {
+  :root {
+    --bg-color: #121212;
+    --text-color: #e0e0e0;
+    --accent: #4CAF50;
+  }
+
+  body {
+    background: var(--bg-color);
   }
 }
