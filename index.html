@@ -10,13 +10,48 @@
 <body>
 <div class="app-container">
   <main id="app">
-    <!-- Dashboard Screen -->
-    <div class="screen active" id="dashboard">
-      <div class="screen-center">
-        <h1>Dashboard</h1>
-        <p>Welcome to CyberPrep Companion! Track your CISSP study progress and lab work here.</p>
+   <!-- Dashboard Screen -->
+<div class="screen active" id="dashboard">
+  <div class="screen-center">
+    <h1>Dashboard</h1>
+
+    <!-- Today's Tasks -->
+    <section>
+      <h2>Today's Tasks</h2>
+      <div class="task-card">
+        <span>Study: Domain 1 – Risk Management</span>
+        <span class="status">Pending</span>
       </div>
-    </div>
+      <div class="task-card">
+        <span>Lab: Nmap Port Scanning</span>
+        <span class="status">Pending</span>
+      </div>
+    </section>
+
+    <!-- Progress Bar -->
+    <section class="progress-container">
+      <div class="progress-label">Study Progress: 0%</div>
+      <div class="progress-bar">
+        <div class="progress-fill" style="width: 0%;"></div>
+      </div>
+    </section>
+
+    <!-- Quick Stats -->
+    <section class="stats-grid">
+      <div class="stat-card">
+        <div class="value" id="days-left">13</div>
+        <div class="label">Days Left</div>
+      </div>
+      <div class="stat-card">
+        <div class="value" id="labs-done">0</div>
+        <div class="label">Labs Done</div>
+      </div>
+    </section>
+
+    <!-- Motivation -->
+    <p class="quote">"Stay focused, stay secure: your CISSP journey starts today!"</p>
+  </div>
+</div>
 
     <!-- Study Plan Screen -->
     <div class="screen" id="study-plan">
