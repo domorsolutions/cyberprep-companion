@@ -68,3 +68,43 @@ if (studyTimeSelect) {
     studyTimeSelect.value = savedTime;
   }
 }
+
+// Daily Planner drag & drop
+window.addEventListener('DOMContentLoaded', () => {
+  const draggables = document.querySelectorAll('.draggable');
+  const dropzones = document.querySelectorAll('.planner-block');
+
+  draggables.forEach(item => {
+    item.addEventListener('dragstart', () => {
+      item.classList.add('dragging');
+    });
+    item.addEventListener('dragend', () => {
+      item.classList.remove('dragging');
+    });
+  });
+
+  dropzones.forEach(zone => {
+    zone.addEventListener('dragover', e => {
+      e.preventDefault();
+      const dragging = document.querySelector('.dragging');
+      if (dragging) zone.appendChild(dragging);
+    });
+  });
+
+  // Restore saved planner layout
+  dropzones.forEach(zone => {
+    const zoneId = zone.getAttribute('id');
+    const saved = localStorage.getItem(`planner-${zoneId}`);
+    if (saved) {
+      zone.innerHTML = saved;
+    }
+  });
+
+  // Save on drop
+  dropzones.forEach(zone => {
+    zone.addEventListener('drop', () => {
+      const zoneId = zone.getAttribute('id');
+      localStorage.setItem(`planner-${zoneId}`, zone.innerHTML);
+    });
+  });
+});
