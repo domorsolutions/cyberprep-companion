@@ -30,23 +30,20 @@ body {
 
 .screen {
   display: none;
-  min-height: calc(100vh - 80px);
+  height: calc(100vh - 60px); /* Match bottom nav height */
+  overflow-y: auto; /* Allow scrolling if content overflows */
 }
 
 .screen.active {
-  display: block;
+  display: flex; /* Use flexbox to center child */
+  justify-content: center;
+  align-items: center;
 }
 
-h1 {
-  font-size: 24px;
-  color: var(--primary);
-  margin-bottom: 20px;
-}
-
-p {
-  font-size: 16px;
-  color: var(--text-color);
-  line-height: 1.5;
+.screen-center {
+  padding: 20px;
+  max-width: 90%; /* Readable content width on mobile */
+  text-align: center; /* Center text for better readability */
 }
 
 /* Bottom Navigation */
@@ -101,5 +98,9 @@ p {
     margin: 0 auto;
     border-left: 1px solid #e0e0e0;
     border-right: 1px solid #e0e0e0;
+  }
+
+  .screen-center {
+    max-width: 500px; /* Slightly wider on desktop for readability */
   }
 }
