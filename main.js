@@ -1,42 +1,55 @@
-// Wait for DOM to be fully loaded
-document.addEventListener('DOMContentLoaded', () => {
-  // Function to show selected screen and update navigation
-  function showScreen(screenId) {
-    // Hide all screens
-    const screens = document.querySelectorAll('.screen');
+// Navigation logic for tab switching
+const navItems = document.querySelectorAll('.nav-btn');
+const screens = document.querySelectorAll('.screen');
+
+navItems.forEach(item => {
+  item.addEventListener('click', (e) => {
+    e.preventDefault();
+    const screenId = item.getAttribute('data-screen');
+
+    navItems.forEach(nav => nav.classList.remove('active'));
     screens.forEach(screen => screen.classList.remove('active'));
 
-    // Show selected screen
-    const selectedScreen = document.getElementById(screenId);
-    if (selectedScreen) {
-      selectedScreen.classList.add('active');
-    }
+    item.classList.add('active');
+    document.getElementById(screenId).classList.add('active');
 
-    // Remove active class from all nav buttons
-    const navItems = document.querySelectorAll('.nav-item');
-    navItems.forEach(nav => nav.classList.remove('active'));
-
-    // Add active class to clicked nav button
-    const activeNav = document.querySelector(`[data-screen="${screenId}"]`);
-    if (activeNav) {
-      activeNav.classList.add('active');
-    }
-
-    // Store the selected screen ID in localStorage
     localStorage.setItem('activeScreen', screenId);
-  }
-
-  // Add click event listeners to nav items
-  const navItems = document.querySelectorAll('.nav-item');
-  navItems.forEach(item => {
-    item.addEventListener('click', (e) => {
-      e.preventDefault(); // Prevent default anchor behavior
-      const screenId = item.getAttribute('data-screen');
-      showScreen(screenId);
-    });
   });
-
-  // On load, get the last active screen from localStorage or default to dashboard
-  const lastActiveScreen = localStorage.getItem('activeScreen') || 'dashboard';
-  showScreen(lastActiveScreen);
 });
+
+// Restore last active screen from localStorage
+window.addEventListener('DOMContentLoaded', () => {
+  const savedScreen = localStorage.getItem('activeScreen');
+  if (savedScreen) {
+    const targetTab = document.querySelector(`.nav-btn[data-screen="${savedScreen}"]`);
+    const targetScreen = document.getElementById(savedScreen);
+    if (targetTab && targetScreen) {
+      navItems.forEach(nav => nav.classList.remove('active'));
+      screens.forEach(screen => screen.classList.remove('active'));
+      targetTab.classList.add('active');
+      targetScreen.classList.add('active');
+    }
+  }
+});
+
+// Study Plan checklist persistence
+const studyCheckboxes = document.querySelectorAll('.study-plan-task input[type="checkbox"]');
+studyCheckboxes.forEach(checkbox => {
+  checkbox.addEventListener('change', () => {
+    localStorage.setItem(checkbox.id, checkbox.checked);
+  });
+  const savedState = localStorage.getItem(checkbox.id);
+  if (savedState) checkbox.checked = savedState === 'true';
+});
+
+// Study Plan time selector persistence
+const studyTimeSelect = document.querySelector('#study-time');
+if (studyTimeSelect) {
+  studyTimeSelect.addEventListener('change', () => {
+    localStorage.setItem('study-time', studyTimeSelect.value);
+  });
+  const savedTime = localStorage.getItem('study-time');
+  if (savedTime) {
+    studyTimeSelect.value = savedTime;
+  }
+}
