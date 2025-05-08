@@ -1,0 +1,105 @@
+/* Global Reset */
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+/* CSS Variables for Theming */
+:root {
+  --primary: #333;
+  --accent: #4CAF50;
+  --bg-color: #f9f9f9;
+  --text-color: #222;
+}
+
+/* Base Styles */
+body {
+  min-height: 100vh;
+  background: var(--bg-color);
+  overflow-x: hidden;
+  color: var(--text-color);
+}
+
+.app-container {
+  max-width: 100%;
+  margin: 0 auto;
+  padding: 20px;
+  padding-bottom: 80px; /* Space for bottom nav */
+}
+
+.screen {
+  display: none;
+  min-height: calc(100vh - 80px);
+}
+
+.screen.active {
+  display: block;
+}
+
+h1 {
+  font-size: 24px;
+  color: var(--primary);
+  margin-bottom: 20px;
+}
+
+p {
+  font-size: 16px;
+  color: var(--text-color);
+  line-height: 1.5;
+}
+
+/* Bottom Navigation */
+.bottom-nav {
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  background: #ffffff;
+  border-top: 1px solid #e0e0e0;
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  height: 60px;
+  box-shadow: 0 -2px 5px rgba(0, 0, 0, 0.1);
+  z-index: 1000;
+}
+
+.nav-item {
+  flex: 1;
+  text-align: center;
+  color: #666;
+  font-size: 12px;
+  text-decoration: none;
+  padding: 8px 0;
+  transition: color 0.2s, background-color 0.2s;
+  touch-action: manipulation;
+}
+
+.nav-item:hover,
+.nav-item:active {
+  background-color: rgba(0, 0, 0, 0.1);
+  color: var(--accent);
+}
+
+.nav-item.active {
+  background-color: var(--accent);
+  color: #ffffff;
+  font-weight: 600;
+}
+
+.nav-item i {
+  display: block;
+  font-size: 24px;
+  margin-bottom: 4px;
+}
+
+/* Responsive Design for Larger Screens */
+@media (min-width: 768px) {
+  .app-container {
+    max-width: 600px;
+    margin: 0 auto;
+    border-left: 1px solid #e0e0e0;
+    border-right: 1px solid #e0e0e0;
+  }
+}
