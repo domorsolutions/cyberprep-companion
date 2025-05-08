@@ -1,4 +1,6 @@
 // Wait for DOM to be fully loaded
+
+// DOMContentLoaded to safely bind after all DOM elements are present
 document.addEventListener('DOMContentLoaded', () => {
   // Function to show selected screen and update navigation
   function showScreen(screenId) {
@@ -35,32 +37,31 @@ document.addEventListener('DOMContentLoaded', () => {
   const lastActiveScreen = localStorage.getItem('activeScreen') || 'dashboard';
   showScreen(lastActiveScreen);
 
-// Study Plan checklist persistence and progress update
-const studyCheckboxes = document.querySelectorAll('.study-plan-task input[type="checkbox"]');
+  // Study Plan checklist persistence and progress update
+  const studyCheckboxes = document.querySelectorAll('.study-plan-task input[type="checkbox"]');
 
-studyCheckboxes.forEach(checkbox => {
-  checkbox.addEventListener('change', () => {
-    localStorage.setItem(checkbox.id, checkbox.checked);
-    updateProgressBar();
-  });
-  const savedState = localStorage.getItem(checkbox.id);
-  if (savedState) checkbox.checked = savedState === 'true';
-});
-
-function updateProgressBar() {
-  const total = studyCheckboxes.length;
-  const completed = Array.from(studyCheckboxes).filter(cb => cb.checked).length;
-  const percent = total === 0 ? 0 : Math.round((completed / total) * 100);
-  const progressFill = document.querySelector('.progress-fill');
-  const progressLabel = document.querySelector('.progress-label');
-  if (progressFill && progressLabel) {
-    progressFill.style.width = `${percent}%`;
-    progressLabel.textContent = `Study Progress: ${percent}%`;
+  function updateProgressBar() {
+    const total = studyCheckboxes.length;
+    const completed = Array.from(studyCheckboxes).filter(cb => cb.checked).length;
+    const percent = total === 0 ? 0 : Math.round((completed / total) * 100);
+    const progressFill = document.querySelector('.progress-fill');
+    const progressLabel = document.querySelector('.progress-label');
+    if (progressFill && progressLabel) {
+      progressFill.style.width = `${percent}%`;
+      progressLabel.textContent = `Study Progress: ${percent}%`;
+    }
   }
-}
 
-// ✅ Now call it AFTER the definition
-updateProgressBar();
+  studyCheckboxes.forEach(checkbox => {
+    checkbox.addEventListener('change', () => {
+      localStorage.setItem(checkbox.id, checkbox.checked);
+      updateProgressBar();
+    });
+    const savedState = localStorage.getItem(checkbox.id);
+    if (savedState) checkbox.checked = savedState === 'true';
+  });
+
+  updateProgressBar();
 
   // Study Plan time selector persistence
   const studyTimeSelect = document.querySelector('#study-time');
@@ -109,47 +110,27 @@ updateProgressBar();
       localStorage.setItem(`planner-${zoneId}`, zone.innerHTML);
     });
   });
-  
-// Dark Mode Toggle (with delay to ensure element is present)
-setTimeout(() => {
-  const darkModeToggle = document.getElementById('dark-mode-toggle');
-  const darkPref = localStorage.getItem('darkMode');
 
-  if (darkPref === 'enabled') {
-    document.body.classList.add('dark');
-    if (darkModeToggle) darkModeToggle.checked = true;
-  }
+  // Dark Mode Toggle (with delay to ensure element is present)
+  setTimeout(() => {
+    const darkModeToggle = document.getElementById('dark-mode-toggle');
+    const darkPref = localStorage.getItem('darkMode');
 
-  if (darkModeToggle) {
-    darkModeToggle.addEventListener('change', () => {
-      if (darkModeToggle.checked) {
-        document.body.classList.add('dark');
-        localStorage.setItem('darkMode', 'enabled');
-      } else {
-        document.body.classList.remove('dark');
-        localStorage.setItem('darkMode', 'disabled');
-      }
-    });
-  }
-}, 100);
-
-// Load preference
-const darkPref = localStorage.getItem('darkMode');
-if (darkPref === 'enabled') {
-  document.body.classList.add('dark');
-  if (darkModeToggle) darkModeToggle.checked = true;
-}
-
-// Toggle handler
-if (darkModeToggle) {
-  darkModeToggle.addEventListener('change', () => {
-    if (darkModeToggle.checked) {
+    if (darkPref === 'enabled') {
       document.body.classList.add('dark');
-      localStorage.setItem('darkMode', 'enabled');
-    } else {
-      document.body.classList.remove('dark');
-      localStorage.setItem('darkMode', 'disabled');
+      if (darkModeToggle) darkModeToggle.checked = true;
     }
-  });
-}
+
+    if (darkModeToggle) {
+      darkModeToggle.addEventListener('change', () => {
+        if (darkModeToggle.checked) {
+          document.body.classList.add('dark');
+          localStorage.setItem('darkMode', 'enabled');
+        } else {
+          document.body.classList.remove('dark');
+          localStorage.setItem('darkMode', 'disabled');
+        }
+      });
+    }
+  }, 100);
 });
