@@ -125,6 +125,36 @@ body {
   flex: 1;
   cursor: pointer;
 }
+.study-plan-time {
+  margin-top: 20px;
+}
+
+.study-plan-time .time-label {
+  font-size: 16px;
+  color: var(--text-color);
+  display: block;
+  margin-bottom: 8px;
+  font-weight: 500;
+}
+
+.study-plan-time select {
+  width: 100%;
+  padding: 12px 16px;
+  font-size: 16px;
+  border: 1px solid #e0e0e0;
+  border-radius: 10px;
+  background: #ffffff;
+  color: var(--text-color);
+  appearance: none;
+  background-image: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="12" height="12" viewBox="0 0 24 24"><path fill="%234a4a4a" d="M7 10l5 5 5-5z"/></svg>');
+  background-repeat: no-repeat;
+  background-position: right 12px center;
+  background-size: 16px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
+  touch-action: manipulation;
+  transition: border 0.2s ease;
+}
+
 /* Study Plan - Dark Mode Styling */
 body.dark .study-plan-task {
   background: #1e1e1e;
