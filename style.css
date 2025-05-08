@@ -171,6 +171,12 @@ body.dark .study-plan-task label {
 body.dark .study-plan-task input[type="checkbox"] {
   accent-color: #00e676;
 }
+body.dark .study-plan-time select {
+  background: #1e1e1e;
+  color: #f0f0f0;
+  border-color: #333;
+  background-image: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="12" height="12" viewBox="0 0 24 24"><path fill="%23ccc" d="M7 10l5 5 5-5z"/></svg>');
+}
 
 /* Bottom Navigation */
 .bottom-nav {
