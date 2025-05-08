@@ -1,4 +1,4 @@
-/* Global Reset */
+/* Global Reset and Base Layout */
 * {
   margin: 0;
   padding: 0;
@@ -13,21 +13,29 @@
   --text-color: #222;
 }
 
-/* General Body Styles */
+/* Base Styles */
 body {
-  font-family: Arial, sans-serif;
-  background-color: var(--bg-color);
-  color: var(--text-color);
   min-height: 100vh;
-  padding-bottom: 60px; /* Space for nav bar */
+  background: var(--bg-color);
+  overflow-x: hidden;
+  color: var(--text-color);
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
 }
 
-/* Screen Containers */
+/* App Container */
+.app-container {
+  max-width: 100%;
+  margin: 0 auto;
+  padding: 20px;
+  padding-bottom: 80px; /* Space for bottom nav */
+}
+
+/* Screen Styling */
 .screen {
   display: none;
-  height: calc(100vh - 60px); /* Account for nav height */
-  padding: 1rem;
+  height: calc(100vh - 60px); /* Account for bottom nav */
   overflow-y: auto;
+  -webkit-overflow-scrolling: touch; /* Smooth scrolling on mobile Safari */
 }
 
 .screen.active {
@@ -35,63 +43,100 @@ body {
   flex-direction: column;
   justify-content: center;
   align-items: center;
+}
+
+/* Centered Screen Content */
+.screen-center {
+  padding: 20px;
+  max-width: 90%;
   text-align: center;
 }
 
-/* Optional Wrapper for Centered Content */
-.screen-center {
-  max-width: 90%;
-  width: 100%;
-}
-
 /* Bottom Navigation */
-#bottom-nav {
+.bottom-nav {
   position: fixed;
   bottom: 0;
-  width: 100%;
-  background-color: var(--primary);
+  left: 0;
+  right: 0;
+  background: #ffffff;
+  border-top: 1px solid #e0e0e0;
   display: flex;
   justify-content: space-around;
-  padding: 10px 0;
-  z-index: 999;
+  align-items: center;
+  height: 60px;
+  box-shadow: 0 -2px 5px rgba(0, 0, 0, 0.1);
+  z-index: 1000;
 }
 
 .nav-btn {
   flex: 1;
-  background: none;
-  border: none;
-  color: #fff;
-  font-size: 14px;
+  text-align: center;
+  color: #666;
+  font-size: 12px;
+  text-decoration: none;
   padding: 8px 0;
-  cursor: pointer;
-  transition: background-color 0.2s ease;
+  transition: color 0.2s, background-color 0.2s;
+  touch-action: manipulation;
+  -webkit-tap-highlight-color: transparent; /* iOS tap feedback */
 }
 
 .nav-btn:hover,
-.nav-btn:focus {
-  background-color: rgba(255, 255, 255, 0.1);
+.nav-btn:active {
+  background-color: rgba(0, 0, 0, 0.1);
+  color: var(--accent);
 }
 
 .nav-btn.active {
   background-color: var(--accent);
-  color: #fff;
-  font-weight: bold;
-  border-radius: 8px;
+  color: #ffffff;
+  font-weight: 600;
 }
 
-/* Progress Bar (Optional for Dashboard) */
-.progress-bar-container {
-  width: 80%;
-  height: 16px;
-  background-color: #e0e0e0;
-  border-radius: 8px;
-  margin: 12px 0;
+.nav-btn i {
+  display: block;
+  font-size: 24px;
+  margin-bottom: 4px;
 }
 
-.progress-bar-fill {
+/* Progress Bar Styles */
+.progress-container {
+  margin: 20px 0;
+}
+
+.progress-label {
+  font-size: 14px;
+  color: var(--text-color);
+  margin-bottom: 8px;
+}
+
+.progress-bar {
+  width: 100%;
+  height: 10px;
+  background: #e0e0e0;
+  border-radius: 5px;
+  overflow: hidden;
+}
+
+.progress-fill {
   height: 100%;
-  background-color: var(--accent);
-  border-radius: 8px;
-  width: 0%;
-  transition: width 0.3s ease-in-out;
+  background: var(--accent);
+  transition: width 0.3s ease;
+}
+
+/* Responsive Design */
+@media (min-width: 768px) {
+  .app-container {
+    max-width: 600px;
+    margin: 0 auto;
+    border-left: 1px solid #e0e0e0;
+    border-right: 1px solid #e0e0e0;
+  }
+
+  .screen-center {
+    max-width: 500px;
+  }
+
+  .nav-btn {
+    font-size: 14px;
+  }
 }
