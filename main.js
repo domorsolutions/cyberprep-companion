@@ -26,11 +26,6 @@ document.addEventListener('DOMContentLoaded', () => {
     localStorage.setItem('activeScreen', screenId);
   }
 
-  // Check localStorage on load and show last active tab, default to dashboard
-  const lastActiveScreen = localStorage.getItem('activeScreen');
-  const initialScreen = lastActiveScreen || 'dashboard';
-  showScreen(initialScreen);
-
   // Add click event listeners to nav items
   const navItems = document.querySelectorAll('.nav-item');
   navItems.forEach(item => {
@@ -40,4 +35,8 @@ document.addEventListener('DOMContentLoaded', () => {
       showScreen(screenId);
     });
   });
+
+  // On load, get the last active screen from localStorage or default to dashboard
+  const lastActiveScreen = localStorage.getItem('activeScreen') || 'dashboard';
+  showScreen(lastActiveScreen);
 });
