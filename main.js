@@ -109,4 +109,26 @@ document.addEventListener('DOMContentLoaded', () => {
       localStorage.setItem(`planner-${zoneId}`, zone.innerHTML);
     });
   });
+  // Dark Mode Toggle
+const darkModeToggle = document.getElementById('dark-mode-toggle');
+
+// Load preference
+const darkPref = localStorage.getItem('darkMode');
+if (darkPref === 'enabled') {
+  document.body.classList.add('dark');
+  if (darkModeToggle) darkModeToggle.checked = true;
+}
+
+// Toggle handler
+if (darkModeToggle) {
+  darkModeToggle.addEventListener('change', () => {
+    if (darkModeToggle.checked) {
+      document.body.classList.add('dark');
+      localStorage.setItem('darkMode', 'enabled');
+    } else {
+      document.body.classList.remove('dark');
+      localStorage.setItem('darkMode', 'disabled');
+    }
+  });
+}
 });
