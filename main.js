@@ -133,4 +133,62 @@ document.addEventListener('DOMContentLoaded', () => {
       });
     }
   }, 100);
+  // Collapsible domain toggle logic
+const domainToggles = document.querySelectorAll('.study-toggle');
+
+domainToggles.forEach(toggle => {
+  toggle.addEventListener('click', () => {
+    const targetId = toggle.getAttribute('data-target');
+    const content = document.getElementById(targetId);
+    if (content) {
+      content.classList.toggle('active');
+      toggle.textContent = content.classList.contains('active')
+        ? `▼ ${toggle.textContent.slice(2)}`
+        : `▶️ ${toggle.textContent.slice(2)}`;
+    }
+  });
+});
+
+// Domain XP + Progress calculation
+const studySections = document.querySelectorAll('.study-section');
+
+function updateAllDomainProgress() {
+  studySections.forEach(section => {
+    const domainId = section.getAttribute('data-domain');
+    const tasks = section.querySelectorAll('.study-plan-task input[type="checkbox"]');
+    const completed = Array.from(tasks).filter(cb => cb.checked).length;
+
+    const progressBar = section.querySelector('.domain-progress-fill');
+    const xpLabel = section.querySelector('.domain-xp-label');
+    const clearedTag = section.querySelector('.domain-cleared-tag');
+
+    const xpTotal = tasks.length;
+    const xpPercent = xpTotal === 0 ? 0 : Math.round((completed / xpTotal) * 100);
+
+    if (progressBar) progressBar.style.width = `${xpPercent}%`;
+    if (xpLabel) xpLabel.textContent = `XP: ${completed} / ${xpTotal}`;
+
+    if (completed === xpTotal && xpTotal > 0) {
+      section.classList.add('cleared');
+    } else {
+      section.classList.remove('cleared');
+    }
+  });
+}
+
+// Attach checkbox listeners for all domains
+document.querySelectorAll('.study-plan-task input[type="checkbox"]').forEach(cb => {
+  cb.addEventListener('change', () => {
+    localStorage.setItem(cb.id, cb.checked);
+    updateAllDomainProgress();
+  });
+
+  const saved = localStorage.getItem(cb.id);
+  if (saved !== null) {
+    cb.checked = saved === 'true';
+  }
+});
+
+// Run on load
+updateAllDomainProgress();
 });
