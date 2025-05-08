@@ -144,15 +144,11 @@ body {
   }
 }
 
-/* Optional: Dark Mode Support */
-@media (prefers-color-scheme: dark) {
-  :root {
-    --bg-color: #121212;
-    --text-color: #e0e0e0;
-    --accent: #4CAF50;
-  }
-
-  body {
-    background: var(--bg-color);
-  }
+body.dark {
+  --bg-color: #121212;
+  --text-color: #e0e0e0;
+  --accent: #4CAF50;
+  background: var(--bg-color);
+  color: var(--text-color);
+}
 }
