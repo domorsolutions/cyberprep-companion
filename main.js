@@ -109,6 +109,7 @@ document.addEventListener('DOMContentLoaded', () => {
       localStorage.setItem(`planner-${zoneId}`, zone.innerHTML);
     });
   });
+  
   // Dark Mode Toggle
 const darkModeToggle = document.getElementById('dark-mode-toggle');
 
