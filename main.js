@@ -100,6 +100,19 @@ document.addEventListener('DOMContentLoaded', () => {
         const domainName = toggle.dataset.label || "Domain";
 toggle.innerHTML = `${isOpen ? '▼' : '▶️'} ${domainName} <span class="domain-level">Level 1</span>`;
       }
+      .study-toggle .arrow {
+  display: inline-block;
+  width: 1em;
+  text-align: center;
+  transition: transform 0.2s ease;
+  margin-right: 8px;
+  color: var(--text-color); /* or --primary or your own color */
+}
+
+/* Optional rotate when active */
+.study-content:not(.active) + .arrow {
+  transform: rotate(-90deg); /* Makes the arrow point sideways */
+}
     });
   });
 
