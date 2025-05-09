@@ -10,6 +10,13 @@ document.addEventListener('DOMContentLoaded', () => {
     if (selectedScreen) {
       selectedScreen.classList.add('active');
     }
+.screen-center {
+  width: 100%;
+  max-width: 600px;
+  padding: var(--space-md);
+  margin: 0 auto;
+  text-align: center;
+}
 
     const navItems = document.querySelectorAll('.nav-btn');
     navItems.forEach(nav => nav.classList.remove('active'));
