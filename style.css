@@ -190,6 +190,34 @@ body {
   padding: 3px 10px;
   border-radius: 8px;
 }
+#study-time {
+  background-color: #fff;
+  color: var(--text-color);
+  border: 1px solid #ccc;
+  border-radius: 8px;
+  padding: 10px;
+  font-size: 1rem;
+  appearance: none;
+  background-image: url('data:image/svg+xml;utf8,<svg fill="%234a4a4a" height="12" width="12" viewBox="0 0 24 24"><path d="M7 10l5 5 5-5z"/></svg>');
+  background-repeat: no-repeat;
+  background-position: right 12px center;
+  background-size: 12px;
+  transition: background-color 0.2s, border-color 0.2s;
+}
+
+/* Remove green highlight on focus */
+#study-time:focus {
+  outline: none;
+  border-color: #888;
+  background-color: #fff;
+  color: var(--text-color);
+}
+
+/* Prevent hover highlight */
+#study-time:hover {
+  background-color: #fff;
+  color: var(--text-color);
+}
 
 .study-plan-time .time-label {
   font-size: 16px;
