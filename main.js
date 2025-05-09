@@ -64,17 +64,19 @@ document.addEventListener('DOMContentLoaded', () => {
 
   // Checkbox persistence
   document.querySelectorAll('.study-plan-task input[type="checkbox"]').forEach(cb => {
-   cb.addEventListener('change', () => {
+ cb.addEventListener('change', () => {
   localStorage.setItem(cb.id, cb.checked);
   updateAllDomainProgress();
-  updateDashboardProgress();
+  updateDashboardProgress(); // <-- Add this
 });
+
 
     const saved = localStorage.getItem(cb.id);
     if (saved !== null) cb.checked = saved === 'true';
   });
 
   updateAllDomainProgress();
+  
 function updateDashboardProgress() {
   const allTasks = document.querySelectorAll('.study-plan-task input[type="checkbox"]');
   const total = allTasks.length;
