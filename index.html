@@ -11,105 +11,98 @@
 <div class="app-container">
   <main id="app">
 
-   <!-- Dashboard Screen -->
-<div class="screen active" id="dashboard">
-  <div class="screen-center">
-    <h1>Dashboard</h1>
+    <!-- Dashboard Screen -->
+    <div class="screen active" id="dashboard">
+      <div class="screen-center">
+        <h1>Dashboard</h1>
 
-    <!-- Today's Tasks -->
-    <section>
-      <h2>Today's Tasks</h2>
-      <div class="task-card">
-        <span>Study: Domain 1 – Risk Management</span>
-        <span class="status">Pending</span>
+        <section>
+          <h2>Today's Tasks</h2>
+          <div class="task-card">
+            <span>Study: Domain 1 – Risk Management</span>
+            <span class="status">Pending</span>
+          </div>
+          <div class="task-card">
+            <span>Lab: Nmap Port Scanning</span>
+            <span class="status">Pending</span>
+          </div>
+        </section>
+
+        <section class="progress-container">
+          <div class="progress-label">Study Progress: 0%</div>
+          <div class="progress-bar">
+            <div class="progress-fill" style="width: 0%;"></div>
+          </div>
+        </section>
+
+        <section class="stats-grid">
+          <div class="stat-card">
+            <div class="value" id="days-left">13</div>
+            <div class="label">Days Left</div>
+          </div>
+          <div class="stat-card">
+            <div class="value" id="labs-done">0</div>
+            <div class="label">Labs Done</div>
+          </div>
+        </section>
+
+        <p class="quote">"Stay focused, stay secure: your CISSP journey starts today!"</p>
       </div>
-      <div class="task-card">
-        <span>Lab: Nmap Port Scanning</span>
-        <span class="status">Pending</span>
+    </div>
+
+    <!-- Study Plan Screen -->
+    <div class="screen" id="study-plan">
+      <div class="screen-center">
+        <h1>Study Plan</h1>
+
+        <div class="study-section" data-domain="domain1">
+          <button class="study-toggle" data-target="domain1-content" data-label="Domain 1: Security & Risk Management">
+            <span class="arrow">▼</span> Domain 1: Security & Risk Management <span class="domain-level">Level 1</span>
+          </button>
+
+          <div class="domain-progress-bar">
+            <div class="domain-progress-fill" style="width: 0%;"></div>
+          </div>
+          <div class="domain-xp-label">XP: 0 / 5</div>
+          <div class="domain-cleared-tag">CLEARED</div>
+
+          <div class="study-content active" id="domain1-content">
+            <div class="study-plan-task">
+              <input type="checkbox" id="d1-task1">
+              <label for="d1-task1">Study the security documentation hierarchy (1 XP)</label>
+            </div>
+            <div class="study-plan-task">
+              <input type="checkbox" id="d1-task2">
+              <label for="d1-task2">Apply the CIA Triad to real-world scenarios (1 XP)</label>
+            </div>
+            <div class="study-plan-task">
+              <input type="checkbox" id="d1-task3">
+              <label for="d1-task3">Create a basic risk assessment matrix (1 XP)</label>
+            </div>
+            <div class="study-plan-task">
+              <input type="checkbox" id="d1-task4">
+              <label for="d1-task4">Compare ISO 27005 vs NIST 800-30 (1 XP)</label>
+            </div>
+            <div class="study-plan-task">
+              <input type="checkbox" id="d1-task5">
+              <label for="d1-task5">Read and reflect on ISC2 Code of Ethics (1 XP)</label>
+            </div>
+          </div>
+        </div>
+
+        <div class="study-plan-time">
+          <label for="study-time" class="time-label">Select Study Time</label>
+          <select name="study-time" id="study-time">
+            <option value="8:00pm">8:00 PM - 9:30 PM</option>
+            <option value="9:30pm" selected>9:30 PM - 11:00 PM</option>
+            <option value="10:00pm">10:00 PM - 12:00 AM</option>
+            <option value="5:00am">5:00 AM - 6:30 AM</option>
+            <option value="custom">Custom</option>
+          </select>
+        </div>
       </div>
-    </section>
-
-    <!-- Progress Bar -->
-    <section class="progress-container">
-      <div class="progress-label">Study Progress: 0%</div>
-      <div class="progress-bar">
-        <div class="progress-fill" style="width: 0%;"></div>
-      </div>
-    </section>
-
-    <!-- Quick Stats -->
-    <section class="stats-grid">
-      <div class="stat-card">
-        <div class="value" id="days-left">13</div>
-        <div class="label">Days Left</div>
-      </div>
-      <div class="stat-card">
-        <div class="value" id="labs-done">0</div>
-        <div class="label">Labs Done</div>
-      </div>
-    </section>
-
-    <!-- Motivation -->
-    <p class="quote">"Stay focused, stay secure: your CISSP journey starts today!"</p>
-  </div>
-</div>
-
-<!-- Study Plan Screen -->
-<div class="screen" id="study-plan">
-  <div class="screen-center">
-    <h1>Study Plan</h1>
-
-    <div class="study-plan-domain">CISSP 8 Domains</div>
-
-    <div class="study-plan-checklist">
-     <button class="study-toggle" data-target="domain1-content" data-label="Domain 1: Security & Risk Management">
-  <span class="arrow">▼</span> Domain 1: Security & Risk Management <span class="domain-level">Level 1</span>
-</button>
-      
-  <div class="domain-progress-bar">
-    <div class="domain-progress-fill" style="width: 0%;"></div>
-  </div>
-  <div class="domain-xp-label">XP: 0 / 5</div>
-
-  <div class="domain-cleared-tag">CLEARED</div>
-
-  <div class="study-content active" id="domain1-content">
-    <div class="study-plan-task">
-      <input type="checkbox" id="d1-task1">
-      <label for="d1-task1">Study the security documentation hierarchy (policy → standard → procedure) (1 XP)</label>
     </div>
-    <div class="study-plan-task">
-      <input type="checkbox" id="d1-task2">
-      <label for="d1-task2">Apply the CIA Triad to 3 real-world scenarios (1 XP)</label>
-    </div>
-    <div class="study-plan-task">
-      <input type="checkbox" id="d1-task3">
-      <label for="d1-task3">Create a basic risk assessment matrix for a small org (1 XP)</label>
-    </div>
-    <div class="study-plan-task">
-      <input type="checkbox" id="d1-task4">
-      <label for="d1-task4">Compare ISO 27005 vs NIST 800-30 risk methodologies (1 XP)</label>
-    </div>
-    <div class="study-plan-task">
-      <input type="checkbox" id="d1-task5">
-      <label for="d1-task5">Read and reflect on ISC2 Code of Ethics — take ethics mini quiz (1 XP)</label>
-    </div>
-  </div>
-</div>
-    <!-- Study Time Selector -->
-    <div class="study-plan-time">
-      <label for="study-time" class="time-label">Select Study Time</label>
-      <select name="study-time" id="study-time">
-        <option value="8:00pm">8:00 PM - 9:30 PM</option>
-        <option value="9:30pm" selected>9:30 PM - 11:00 PM</option>
-        <option value="10:00pm">10:00 PM - 12:00 AM</option>
-        <option value="5:00am">5:00 AM - 6:30 AM</option>
-        <option value="custom">Custom</option>
-      </select>
-    </div>
-  </div>
-</div>
-  
+
     <!-- Lab Tracker Screen -->
     <div class="screen" id="lab-tracker">
       <div class="screen-center">
@@ -130,11 +123,11 @@
     <div class="screen" id="settings">
       <div class="screen-center">
         <h1>Settings</h1>
-       <p>Customize your app experience and preferences.</p>
-<label class="toggle-label" style="margin-top: 1em; display: block;">
-  <input type="checkbox" id="dark-mode-toggle">
-  Enable Dark Mode
-</label>
+        <p>Customize your app experience and preferences.</p>
+        <label class="toggle-label">
+          <input type="checkbox" id="dark-mode-toggle">
+          Enable Dark Mode
+        </label>
       </div>
     </div>
   </main>
