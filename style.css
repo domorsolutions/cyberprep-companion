@@ -1,293 +1,67 @@
-/* Global Reset and Base Layout */
-* {
-  margin: 0;
-  padding: 0;
-  box-sizing: border-box;
-}
 
-/* CSS Variables for Theming */
 :root {
   --primary: #333;
   --accent: #4CAF50;
   --bg-color: #f9f9f9;
   --text-color: #222;
-}
-:root {
   --space-xs: 0.5rem;
   --space-sm: 1rem;
   --space-md: 1.5rem;
   --space-lg: 2rem;
+  --space-xl: 3rem;
+  --font-xs: 0.8rem;
+  --font-sm: 0.9rem;
+  --font-md: 1rem;
+  --font-lg: 1.25rem;
+  --font-xl: 1.5rem;
+}
+
+/* Global Reset */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
 }
 
 /* Base Styles */
 body {
   min-height: 100vh;
   background: var(--bg-color);
-  overflow-x: hidden;
   color: var(--text-color);
-  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+  overflow-x: hidden;
 }
 
 .app-container {
   max-width: 100%;
   margin: 0 auto;
   padding: 20px;
-  padding-bottom: 80px; /* Space for bottom nav */
+  padding-bottom: 80px;
 }
 
-/* Screen Styling */
 .screen {
   display: none;
-  height: calc(100vh - 60px); /* Match bottom nav height */
-  overflow-y: auto; /* Scrollable if content overflows */
-  -webkit-overflow-scrolling: touch; /* Smooth scrolling on mobile Safari */
-  transition: opacity 0.3s ease;
+  height: calc(100vh - 60px);
+  overflow-y: auto;
+  -webkit-overflow-scrolling: touch;
 }
 
 .screen.active {
   display: flex;
-  justify-content: center;
+  flex-direction: column;
   align-items: center;
-  flex-direction: column; /* Ensure vertical stacking of content */
 }
 
-/* Screen Center Container */
 .screen-center {
-  padding: 20px;
-  max-width: 90%;
-  text-align: center;
   width: 100%;
-  background: #fff;
-  border-radius: 12px;
-  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.05);
+  max-width: 600px;
+  padding: var(--space-md);
 }
 
-/* Dashboard Enhancements */
-.task-card,
-.stat-card {
-  background: #ffffff;
-  border-radius: 12px;
-  padding: 15px 20px;
-  margin-bottom: 15px;
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.05);
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  transition: background 0.3s ease;
-}
-
-.task-card span,
-.stat-card .value,
-.stat-card .label {
-  font-size: 16px;
-}
-
-.task-card .status {
-  font-size: 14px;
-  color: var(--accent);
-  font-weight: 500;
-}
-
-.stats-grid {
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  gap: 15px;
-  margin-top: 20px;
-}
-
-.quote {
-  margin-top: 25px;
-  font-style: italic;
-  font-size: 15px;
-  text-align: center;
-  color: var(--text-color);
-}.study-plan-task {
-  display: flex;
-  align-items: center;
-  background: #ffffff;
-  border-radius: 12px;
-  padding: 15px 18px;
-  margin-bottom: 10px;
-  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
-  transition: background 0.2s ease;
-  touch-action: manipulation;
-}
-
-.rank-card {
-  background: #fff;
-  border-radius: 12px;
-  padding: 16px;
-  text-align: center;
-  box-shadow: 0 2px 8px rgba(0,0,0,0.1);
-}
-.rank-title {
-  font-size: var(--font-lg);
-  font-weight: 700;
-  color: var(--accent);
-  margin-bottom: var(--space-sm);
-}
-.rank-xp-bar {
-  width: 100%;
-  height: 12px;
-  background: #eee;
-  border-radius: 6px;
-  overflow: hidden;
-  margin-bottom: var(--space-sm);
-}
-.rank-xp-fill {
-  height: 100%;
-  background: linear-gradient(90deg, #4CAF50, #81C784);
-  transition: width 0.4s ease;
-}
-.rank-xp-label {
-  font-size: var(--font-sm);
-  color: var(--text-color);
-}
-
-.study-toggle:hover {
-  background: #3e9141;
-}
-.domain-progress-bar {
-  width: 100%;
-  height: 10px;
-  background: #e0e0e0;
-  border-radius: 6px;
-  margin: 10px 0;
-  overflow: hidden;
-}
-
-.domain-progress-fill {
-  height: 100%;
-  background: linear-gradient(90deg, #4CAF50, #81C784);
-  width: 0%;
-  transition: width 0.3s ease;
-}
-.domain-xp-label {
-  font-size: 14px;
-  margin-bottom: 10px;
-  color: var(--text-color);
-}
-.domain-cleared-tag {
-  display: none;
-  font-weight: bold;
-  font-size: 14px;
-  color: #00e676;
-  text-align: right;
-  margin-bottom: 5px;
-}
-
-.study-section.cleared .domain-cleared-tag {
-  display: block;
-}
-
-.domain-level {
-  font-size: 14px;
-  position: absolute;
-  right: 16px;
-  top: 50%;
-  transform: translateY(-50%);
-  background: #ffffff22;
-  padding: 3px 10px;
-  border-radius: 8px;
-}
-#study-time {
-  background-color: #fff;
-  color: var(--text-color);
-  border: 1px solid #ccc;
-  border-radius: 8px;
-  padding: 10px;
-  font-size: 1rem;
-  appearance: none;
-  background-image: url('data:image/svg+xml;utf8,<svg fill="%234a4a4a" height="12" width="12" viewBox="0 0 24 24"><path d="M7 10l5 5 5-5z"/></svg>');
-  background-repeat: no-repeat;
-  background-position: right 12px center;
-  background-size: 12px;
-  transition: background-color 0.2s, border-color 0.2s;
-}
-
-/* Remove green highlight on focus */
-#study-time:focus {
-  outline: none;
-  border-color: #888;
-  background-color: #fff;
-  color: var(--text-color);
-}
-
-/* Prevent hover highlight */
-#study-time:hover {
-  background-color: #fff;
-  color: var(--text-color);
-}
-
-.study-plan-time .time-label {
-  font-size: 16px;
-  color: var(--text-color);
-  display: block;
-  margin-bottom: 8px;
-  font-weight: 500;
-}
-
-.study-plan-time select {
-  width: 100%;
-  padding: 12px 16px;
-  font-size: 16px;
-  border: 1px solid #e0e0e0;
-  border-radius: 10px;
-  background: #ffffff;
-  color: var(--text-color);
-  appearance: none;
-  background-image: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="12" height="12" viewBox="0 0 24 24"><path fill="%234a4a4a" d="M7 10l5 5 5-5z"/></svg>');
-  background-repeat: no-repeat;
-  background-position: right 12px center;
-  background-size: 16px;
-  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
-  touch-action: manipulation;
-  transition: border 0.2s ease;
-}
-.study-content {
-  display: none;
-  padding-top: 10px;
-}
-
-.study-content.active {
-  display: block;
-}
-
-.study-toggle .arrow {
-  display: inline-block;
-  width: 1em;
-  text-align: center;
-  transition: transform 0.2s ease;
-  margin-right: 8px;
-  color: var(--text-color); /* or --primary or your own color */
-}
-
-/* Optional rotate when active */
-.study-content:not(.active) + .arrow {
-  transform: rotate(-90deg); /* Makes the arrow point sideways */
-}
-
-/* Study Plan - Dark Mode Styling */
-body.dark .study-plan-task {
-  background: #1e1e1e;
-}
-
-body.dark .study-plan-task:hover {
-  background: #2a2a2a;
-}
-
-body.dark .study-plan-task label {
-  color: #ddd;
-}
-
-body.dark .study-plan-task input[type="checkbox"] {
-  accent-color: #00e676;
-}
-body.dark .study-plan-time select {
-  background: #1e1e1e;
-  color: #f0f0f0;
-  border-color: #333;
-  background-image: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="12" height="12" viewBox="0 0 24 24"><path fill="%23ccc" d="M7 10l5 5 5-5z"/></svg>');
+/* Section Spacing Utility */
+.section-spacing {
+  margin-top: var(--space-lg);
+  margin-bottom: var(--space-lg);
 }
 
 /* Bottom Navigation */
@@ -314,7 +88,6 @@ body.dark .study-plan-time select {
   text-decoration: none;
   padding: 8px 0;
   transition: color 0.2s, background-color 0.2s;
-  touch-action: manipulation; /* Optimize for touch devices */
 }
 
 .nav-btn:hover,
@@ -335,81 +108,102 @@ body.dark .study-plan-time select {
   margin-bottom: 4px;
 }
 
-/* Progress Bar Styles */
-.progress-container {
-  margin: 20px 0;
-}
-
-.progress-label {
-  font-size: 14px;
-  color: var(--text-color);
-  margin-bottom: 8px;
-}
-
-.progress-bar {
+/* Progress Bars */
+.progress-container,
+.domain-progress-bar,
+.rank-xp-bar {
   width: 100%;
   height: 10px;
   background: #e0e0e0;
   border-radius: 5px;
   overflow: hidden;
+  margin-top: var(--space-sm);
+  margin-bottom: var(--space-sm);
 }
 
-.progress-fill {
+.progress-fill,
+.domain-progress-fill,
+.rank-xp-fill {
   height: 100%;
   background: var(--accent);
   transition: width 0.3s ease;
 }
 
-/* Responsive Design */
-@media (min-width: 768px) {
-  .app-container {
-    max-width: 600px;
-    margin: 0 auto;
-    border-left: 1px solid #e0e0e0;
-    border-right: 1px solid #e0e0e0;
-  }
-
-  .screen-center {
-    max-width: 500px;
-  }
-
-  .nav-btn {
-    font-size: 14px;
-  }
+/* Study Plan Tasks */
+.study-plan-task {
+  display: flex;
+  align-items: center;
+  background: #fff;
+  border-radius: 10px;
+  padding: 12px;
+  margin-bottom: var(--space-sm);
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
 }
 
-body.dark {
-  --bg-color: #121212;
-  --text-color: #e0e0e0;
-  --accent: #4CAF50;
-  background: var(--bg-color);
+.study-plan-task input[type="checkbox"] {
+  margin-right: var(--space-sm);
+  width: 20px;
+  height: 20px;
+  accent-color: var(--accent);
+}
+
+/* Study Time Dropdown */
+#study-time {
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  appearance: none;
+  width: 100%;
+  padding: 12px 16px;
+  font-size: 1rem;
+  border: 1px solid #ccc;
+  border-radius: 10px;
+  background: #ffffff;
   color: var(--text-color);
-}
-body.dark .task-card,
-body.dark .stat-card {
-  background: #1f1f1f;
-  color: #eee;
-  box-shadow: 0 2px 6px rgba(255, 255, 255, 0.05);
-}
-
-body.dark .task-card .status {
-  color: #00e676;
-}
-body.dark .domain-progress-bar {
-  background: #333;
+  background-image: url('data:image/svg+xml;utf8,<svg fill="%234a4a4a" height="12" width="12" viewBox="0 0 24 24"><path d="M7 10l5 5 5-5z"/></svg>');
+  background-repeat: no-repeat;
+  background-position: right 12px center;
+  background-size: 16px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
+  touch-action: manipulation;
+  transition: border 0.2s ease, background 0.2s ease;
 }
 
-body.dark .domain-progress-fill {
-  background: linear-gradient(90deg, #00e676, #66ffb3);
+#study-time:focus,
+#study-time:hover {
+  background-color: #fff;
+  color: var(--text-color);
+  outline: none;
+  border-color: #888;
 }
 
-body.dark .domain-xp-label,
-body.dark .domain-level {
-  color: #ccc;
+/* Dark Mode Support */
+body.dark {
+  background: #111;
+  color: #f0f0f0;
 }
 
-body.dark .quote {
-  color: #aaa;
+body.dark #study-time {
+  background: #1e1e1e;
+  color: #f0f0f0;
+  border-color: #333;
+  background-image: url('data:image/svg+xml;utf8,<svg fill="%23ccc" height="12" width="12" viewBox="0 0 24 24"><path d="M7 10l5 5 5-5z"/></svg>');
 }
 
+/* Responsive Design */
+@media (max-width: 400px) {
+  body {
+    font-size: 0.9rem;
+  }
+  .screen-center {
+    padding: var(--space-sm);
+  }
+  .task-card,
+  .study-plan-task {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+  .nav-btn {
+    font-size: 10px;
+    padding: 4px 0;
+  }
 }
