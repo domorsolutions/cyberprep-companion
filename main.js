@@ -97,8 +97,8 @@ document.addEventListener('DOMContentLoaded', () => {
 
       if (content) {
         const isOpen = content.classList.toggle('active');
-        const baseLabel = toggle.textContent.replace(/^▶️|▼/, '').trim().replace(/Level.*/, '').trim();
-        toggle.innerHTML = `${isOpen ? '▼' : '▶️'} ${baseLabel} <span class="domain-level">Level 1</span>`;
+        const domainName = toggle.dataset.label || "Domain";
+toggle.innerHTML = `${isOpen ? '▼' : '▶️'} ${domainName} <span class="domain-level">Level 1</span>`;
       }
     });
   });
