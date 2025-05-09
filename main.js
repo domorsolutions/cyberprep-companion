@@ -1,8 +1,7 @@
 // Wait for DOM to be fully loaded
 
-// DOMContentLoaded to safely bind after all DOM elements are present
 document.addEventListener('DOMContentLoaded', () => {
-  // Function to show selected screen and update navigation
+  // Screen navigation logic
   function showScreen(screenId) {
     const screens = document.querySelectorAll('.screen');
     screens.forEach(screen => screen.classList.remove('active'));
@@ -23,7 +22,7 @@ document.addEventListener('DOMContentLoaded', () => {
     localStorage.setItem('activeScreen', screenId);
   }
 
-  // Add click event listeners to nav items
+  // Attach navigation event listeners
   const navItems = document.querySelectorAll('.nav-btn');
   navItems.forEach(item => {
     item.addEventListener('click', (e) => {
@@ -33,37 +32,50 @@ document.addEventListener('DOMContentLoaded', () => {
     });
   });
 
-  // On load, get the last active screen from localStorage or default to dashboard
   const lastActiveScreen = localStorage.getItem('activeScreen') || 'dashboard';
   showScreen(lastActiveScreen);
 
-  // Study Plan checklist persistence and progress update
-  const studyCheckboxes = document.querySelectorAll('.study-plan-task input[type="checkbox"]');
+  // Study Plan XP and progress tracking
+  const studySections = document.querySelectorAll('.study-section');
 
-  function updateProgressBar() {
-    const total = studyCheckboxes.length;
-    const completed = Array.from(studyCheckboxes).filter(cb => cb.checked).length;
-    const percent = total === 0 ? 0 : Math.round((completed / total) * 100);
-    const progressFill = document.querySelector('.progress-fill');
-    const progressLabel = document.querySelector('.progress-label');
-    if (progressFill && progressLabel) {
-      progressFill.style.width = `${percent}%`;
-      progressLabel.textContent = `Study Progress: ${percent}%`;
-    }
+  function updateAllDomainProgress() {
+    studySections.forEach(section => {
+      const domainId = section.getAttribute('data-domain');
+      const tasks = section.querySelectorAll('.study-plan-task input[type="checkbox"]');
+      const completed = Array.from(tasks).filter(cb => cb.checked).length;
+
+      const progressBar = section.querySelector('.domain-progress-fill');
+      const xpLabel = section.querySelector('.domain-xp-label');
+      const clearedTag = section.querySelector('.domain-cleared-tag');
+
+      const xpTotal = tasks.length;
+      const xpPercent = xpTotal === 0 ? 0 : Math.round((completed / xpTotal) * 100);
+
+      if (progressBar) progressBar.style.width = `${xpPercent}%`;
+      if (xpLabel) xpLabel.textContent = `XP: ${completed} / ${xpTotal}`;
+
+      if (completed === xpTotal && xpTotal > 0) {
+        section.classList.add('cleared');
+      } else {
+        section.classList.remove('cleared');
+      }
+    });
   }
 
-  studyCheckboxes.forEach(checkbox => {
-    checkbox.addEventListener('change', () => {
-      localStorage.setItem(checkbox.id, checkbox.checked);
-      updateProgressBar();
+  // Checkbox persistence
+  document.querySelectorAll('.study-plan-task input[type="checkbox"]').forEach(cb => {
+    cb.addEventListener('change', () => {
+      localStorage.setItem(cb.id, cb.checked);
+      updateAllDomainProgress();
     });
-    const savedState = localStorage.getItem(checkbox.id);
-    if (savedState) checkbox.checked = savedState === 'true';
+
+    const saved = localStorage.getItem(cb.id);
+    if (saved !== null) cb.checked = saved === 'true';
   });
 
-  updateProgressBar();
+  updateAllDomainProgress();
 
-  // Study Plan time selector persistence
+  // Study time selector persistence
   const studyTimeSelect = document.querySelector('#study-time');
   if (studyTimeSelect) {
     studyTimeSelect.addEventListener('change', () => {
@@ -74,6 +86,22 @@ document.addEventListener('DOMContentLoaded', () => {
       studyTimeSelect.value = savedTime;
     }
   }
+
+  // Collapsible domain toggle
+  const domainToggles = document.querySelectorAll('.study-toggle');
+
+  domainToggles.forEach(toggle => {
+    toggle.addEventListener('click', () => {
+      const targetId = toggle.getAttribute('data-target');
+      const content = document.getElementById(targetId);
+
+      if (content) {
+        const isOpen = content.classList.toggle('active');
+        const baseLabel = toggle.textContent.replace(/^▶️|▼/, '').trim().replace(/Level.*/, '').trim();
+        toggle.innerHTML = `${isOpen ? '▼' : '▶️'} ${baseLabel} <span class="domain-level">Level 1</span>`;
+      }
+    });
+  });
 
   // Daily Planner drag & drop
   const draggables = document.querySelectorAll('.draggable');
@@ -111,7 +139,7 @@ document.addEventListener('DOMContentLoaded', () => {
     });
   });
 
-  // Dark Mode Toggle (with delay to ensure element is present)
+  // Dark Mode toggle
   setTimeout(() => {
     const darkModeToggle = document.getElementById('dark-mode-toggle');
     const darkPref = localStorage.getItem('darkMode');
@@ -133,62 +161,4 @@ document.addEventListener('DOMContentLoaded', () => {
       });
     }
   }, 100);
-  // Collapsible domain toggle logic
-const domainToggles = document.querySelectorAll('.study-toggle');
-
-domainToggles.forEach(toggle => {
-  toggle.addEventListener('click', () => {
-    const targetId = toggle.getAttribute('data-target');
-    const content = document.getElementById(targetId);
-    if (content) {
-      content.classList.toggle('active');
-     const domainTitle = toggle.textContent.replace(/^▶️|▼/, '').trim();
-toggle.textContent = content.classList.contains('active')const labelText = toggle.innerText.replace(/^▶️|▼/, '').trim();
-toggle.innerHTML = `${content.classList.contains('active') ? '▼' : '▶️'} ${labelText} <span class="domain-level">Level 1</span>`;
-    }
-  });
-});
-
-// Domain XP + Progress calculation
-const studySections = document.querySelectorAll('.study-section');
-
-function updateAllDomainProgress() {
-  studySections.forEach(section => {
-    const domainId = section.getAttribute('data-domain');
-    const tasks = section.querySelectorAll('.study-plan-task input[type="checkbox"]');
-    const completed = Array.from(tasks).filter(cb => cb.checked).length;
-
-    const progressBar = section.querySelector('.domain-progress-fill');
-    const xpLabel = section.querySelector('.domain-xp-label');
-    const clearedTag = section.querySelector('.domain-cleared-tag');
-
-    const xpTotal = tasks.length;
-    const xpPercent = xpTotal === 0 ? 0 : Math.round((completed / xpTotal) * 100);
-
-    if (progressBar) progressBar.style.width = `${xpPercent}%`;
-    if (xpLabel) xpLabel.textContent = `XP: ${completed} / ${xpTotal}`;
-
-    if (completed === xpTotal && xpTotal > 0) {
-      section.classList.add('cleared');
-    } else {
-      section.classList.remove('cleared');
-    }
-  });
-}
-
-// Attach checkbox listeners for all domains
-document.querySelectorAll('.study-plan-task input[type="checkbox"]').forEach(cb => {
-  cb.addEventListener('change', () => {
-    localStorage.setItem(cb.id, cb.checked);
-    updateAllDomainProgress();
-  });
-
-  const saved = localStorage.getItem(cb.id);
-  if (saved !== null) {
-    cb.checked = saved === 'true';
-  }
-});
-
-// Run on load
-updateAllDomainProgress();
 });
