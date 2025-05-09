@@ -24,7 +24,7 @@
   font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
 }
 
-/* Base Styles */
+/* Base Layout */
 body {
   min-height: 100vh;
   background: var(--bg-color);
@@ -35,36 +35,31 @@ body {
 .app-container {
   max-width: 100%;
   margin: 0 auto;
-  padding: 20px;
   padding-bottom: 80px;
 }
 
 .screen {
-  display: none;
-  height: calc(100vh - 60px);
+  display: block;
+  min-height: calc(100vh - 60px);
+  padding: 0 16px;
   overflow-y: auto;
   -webkit-overflow-scrolling: touch;
 }
 
-.screen.active {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-}
-
 .screen-center {
-  width: 100%;
+  margin: 0 auto;
   max-width: 600px;
   padding: var(--space-md);
+  width: 100%;
+  text-align: center;
 }
 
-/* Section Spacing Utility */
 .section-spacing {
   margin-top: var(--space-lg);
   margin-bottom: var(--space-lg);
 }
 
-/* Bottom Navigation */
+/* Navigation */
 .bottom-nav {
   position: fixed;
   bottom: 0;
