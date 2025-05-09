@@ -63,18 +63,20 @@ document.addEventListener('DOMContentLoaded', () => {
   }
 
   // Checkbox persistence
-  document.querySelectorAll('.study-plan-task input[type="checkbox"]').forEach(cb => {
- cb.addEventListener('change', () => {
-  localStorage.setItem(cb.id, cb.checked);
-  updateAllDomainProgress();
-  updateDashboardProgress(); // <-- Add this
+document.querySelectorAll('.study-plan-task input[type="checkbox"]').forEach(cb => {
+  cb.addEventListener('change', () => {
+    localStorage.setItem(cb.id, cb.checked);
+    updateAllDomainProgress();
+    updateDashboardProgress();
+  });
+
+  const saved = localStorage.getItem(cb.id);
+  if (saved !== null) cb.checked = saved === 'true';
 });
 
-
-    const saved = localStorage.getItem(cb.id);
-    if (saved !== null) cb.checked = saved === 'true';
-     updateAllDomainProgress();
-  updateDashboardProgress();
+// ✅ Recalculate progress from restored checkboxes
+updateAllDomainProgress();
+updateDashboardProgress();
   });
 
 function updateDashboardProgress() {
