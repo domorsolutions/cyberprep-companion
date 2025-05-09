@@ -76,7 +76,8 @@ document.addEventListener('DOMContentLoaded', () => {
   });
 
   updateAllDomainProgress();
-  
+  updateDashboardProgress();
+
 function updateDashboardProgress() {
   const allTasks = document.querySelectorAll('.study-plan-task input[type="checkbox"]');
   const total = allTasks.length;
