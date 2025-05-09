@@ -62,35 +62,33 @@ document.addEventListener('DOMContentLoaded', () => {
     });
   }
 
+  function updateDashboardProgress() {
+    const allTasks = document.querySelectorAll('.study-plan-task input[type="checkbox"]');
+    const total = allTasks.length;
+    const completed = Array.from(allTasks).filter(cb => cb.checked).length;
+    const percent = total === 0 ? 0 : Math.round((completed / total) * 100);
+
+    const dashLabel = document.querySelector('.progress-label');
+    const dashBar = document.querySelector('.progress-fill');
+
+    if (dashLabel) dashLabel.textContent = `Study Progress: ${percent}%`;
+    if (dashBar) dashBar.style.width = `${percent}%`;
+  }
+
   // Checkbox persistence
-document.querySelectorAll('.study-plan-task input[type="checkbox"]').forEach(cb => {
-  cb.addEventListener('change', () => {
-    localStorage.setItem(cb.id, cb.checked);
-    updateAllDomainProgress();
-    updateDashboardProgress();
+  document.querySelectorAll('.study-plan-task input[type="checkbox"]').forEach(cb => {
+    cb.addEventListener('change', () => {
+      localStorage.setItem(cb.id, cb.checked);
+      updateAllDomainProgress();
+      updateDashboardProgress();
+    });
+
+    const saved = localStorage.getItem(cb.id);
+    if (saved !== null) cb.checked = saved === 'true';
   });
 
-  const saved = localStorage.getItem(cb.id);
-  if (saved !== null) cb.checked = saved === 'true';
-});
-
-// ✅ Recalculate progress from restored checkboxes
-updateAllDomainProgress();
-updateDashboardProgress();
-  });
-
-function updateDashboardProgress() {
-  const allTasks = document.querySelectorAll('.study-plan-task input[type="checkbox"]');
-  const total = allTasks.length;
-  const completed = Array.from(allTasks).filter(cb => cb.checked).length;
-  const percent = total === 0 ? 0 : Math.round((completed / total) * 100);
-
-  const dashLabel = document.querySelector('.progress-label');
-  const dashBar = document.querySelector('.progress-fill');
-
-  if (dashLabel) dashLabel.textContent = `Study Progress: ${percent}%`;
-  if (dashBar) dashBar.style.width = `${percent}%`;
-}
+  updateAllDomainProgress();
+  updateDashboardProgress();
 
   // Study time selector persistence
   const studyTimeSelect = document.querySelector('#study-time');
@@ -115,10 +113,10 @@ function updateDashboardProgress() {
       if (content) {
         const isOpen = content.classList.toggle('active');
         const domainName = toggle.dataset.label || "Domain";
-const arrow = toggle.querySelector('.arrow');
-if (arrow) {
-  arrow.textContent = isOpen ? '▼' : '▶';
-}
+        const arrow = toggle.querySelector('.arrow');
+        if (arrow) {
+          arrow.textContent = isOpen ? '▼' : '▶';
+        }
       }
     });
   });
