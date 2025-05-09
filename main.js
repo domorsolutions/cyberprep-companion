@@ -73,10 +73,9 @@ document.addEventListener('DOMContentLoaded', () => {
 
     const saved = localStorage.getItem(cb.id);
     if (saved !== null) cb.checked = saved === 'true';
-  });
-
-  updateAllDomainProgress();
+     updateAllDomainProgress();
   updateDashboardProgress();
+  });
 
 function updateDashboardProgress() {
   const allTasks = document.querySelectorAll('.study-plan-task input[type="checkbox"]');
