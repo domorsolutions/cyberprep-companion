@@ -14,9 +14,9 @@
     <!-- Dashboard Screen -->
     <div class="screen active" id="dashboard">
       <div class="screen-center">
-        <h1>Dashboard</h1>
+        <h1 class="section-spacing">Dashboard</h1>
 
-        <section>
+        <section class="section-spacing">
           <h2>Today's Tasks</h2>
           <div class="task-card">
             <span>Study: Domain 1 – Risk Management</span>
@@ -28,14 +28,14 @@
           </div>
         </section>
 
-        <section class="progress-container">
+        <section class="progress-container section-spacing">
           <div class="progress-label">Study Progress: 0%</div>
           <div class="progress-bar">
             <div class="progress-fill" style="width: 0%;"></div>
           </div>
         </section>
 
-        <section class="stats-grid">
+        <section class="stats-grid section-spacing">
           <div class="stat-card">
             <div class="value" id="days-left">13</div>
             <div class="label">Days Left</div>
@@ -46,16 +46,16 @@
           </div>
         </section>
 
-        <p class="quote">"Stay focused, stay secure: your CISSP journey starts today!"</p>
+        <p class="quote section-spacing">"Stay focused, stay secure: your CISSP journey starts today!"</p>
       </div>
     </div>
 
     <!-- Study Plan Screen -->
     <div class="screen" id="study-plan">
       <div class="screen-center">
-        <h1>Study Plan</h1>
+        <h1 class="section-spacing">Study Plan</h1>
 
-        <div class="study-section" data-domain="domain1">
+        <div class="study-section section-spacing" data-domain="domain1">
           <button class="study-toggle" data-target="domain1-content" data-label="Domain 1: Security & Risk Management">
             <span class="arrow">▼</span> Domain 1: Security & Risk Management <span class="domain-level">Level 1</span>
           </button>
@@ -90,7 +90,7 @@
           </div>
         </div>
 
-        <div class="study-plan-time">
+        <div class="study-plan-time section-spacing">
           <label for="study-time" class="time-label">Select Study Time</label>
           <select name="study-time" id="study-time">
             <option value="8:00pm">8:00 PM - 9:30 PM</option>
@@ -102,63 +102,29 @@
         </div>
       </div>
     </div>
-  <div class="study-section" data-domain="domain2">
-  <button class="study-toggle" data-target="domain2-content" data-label="Domain 2: Asset Security">
-    <span class="arrow">▼</span> Domain 2: Asset Security <span class="domain-level">Level 1</span>
-  </button>
-
-  <div class="domain-progress-bar">
-    <div class="domain-progress-fill" style="width: 0%;"></div>
-  </div>
-  <div class="domain-xp-label">XP: 0 / 5</div>
-  <div class="domain-cleared-tag">CLEARED</div>
-
-  <div class="study-content active" id="domain2-content">
-    <div class="study-plan-task">
-      <input type="checkbox" id="d2-task1">
-      <label for="d2-task1">Classify data using public/private/confidential model (1 XP)</label>
-    </div>
-    <div class="study-plan-task">
-      <input type="checkbox" id="d2-task2">
-      <label for="d2-task2">Label assets according to their value (1 XP)</label>
-    </div>
-    <div class="study-plan-task">
-      <input type="checkbox" id="d2-task3">
-      <label for="d2-task3">Create a mock data retention schedule (1 XP)</label>
-    </div>
-    <div class="study-plan-task">
-      <input type="checkbox" id="d2-task4">
-      <label for="d2-task4">Study security controls for media storage (1 XP)</label>
-    </div>
-    <div class="study-plan-task">
-      <input type="checkbox" id="d2-task5">
-      <label for="d2-task5">Draft a basic asset handling policy (1 XP)</label>
-    </div>
-  </div>
-</div>
 
     <!-- Lab Tracker Screen -->
     <div class="screen" id="lab-tracker">
       <div class="screen-center">
-        <h1>Lab Tracker</h1>
-        <p>Log and monitor your vulnerability lab practice with tools like Nmap and Metasploit.</p>
+        <h1 class="section-spacing">Lab Tracker</h1>
+        <p class="section-spacing">Log and monitor your vulnerability lab practice with tools like Nmap and Metasploit.</p>
       </div>
     </div>
 
     <!-- Resources Screen -->
     <div class="screen" id="resources">
       <div class="screen-center">
-        <h1>Resources</h1>
-        <p>Access free CISSP study materials and lab tool guides.</p>
+        <h1 class="section-spacing">Resources</h1>
+        <p class="section-spacing">Access free CISSP study materials and lab tool guides.</p>
       </div>
     </div>
 
     <!-- Settings Screen -->
     <div class="screen" id="settings">
       <div class="screen-center">
-        <h1>Settings</h1>
-        <p>Customize your app experience and preferences.</p>
-        <label class="toggle-label">
+        <h1 class="section-spacing">Settings</h1>
+        <p class="section-spacing">Customize your app experience and preferences.</p>
+        <label class="toggle-label section-spacing">
           <input type="checkbox" id="dark-mode-toggle">
           Enable Dark Mode
         </label>
@@ -194,3 +160,4 @@
 <script src="main.js"></script>
 </body>
 </html>
+
