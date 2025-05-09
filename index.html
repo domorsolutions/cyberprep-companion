@@ -10,6 +10,34 @@
 <body>
 <div class="app-container">
   <main id="app">
+    <div class="screen" id="study-plan">
+  <div class="screen-center">
+    <h1>Study Plan</h1>
+
+    <!-- Place your domain blocks here -->
+    <!-- Example domain block (keep or replace with yours) -->
+    <div class="study-section" data-domain="domain1">
+      <button class="study-toggle" data-target="domain1-content">
+        ▼ Domain 1: Security & Risk Management
+        <span class="domain-level">Level 1</span>
+      </button>
+
+      <div class="domain-progress-bar">
+        <div class="domain-progress-fill" style="width: 0%;"></div>
+      </div>
+      <div class="domain-xp-label">XP: 0 / 5</div>
+      <div class="domain-cleared-tag">CLEARED</div>
+
+      <div class="study-content active" id="domain1-content">
+        <div class="study-plan-task">
+          <input type="checkbox" id="d1-task1">
+          <label for="d1-task1">Understand Bell-LaPadula & Biba Models (1 XP)</label>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
    <!-- Dashboard Screen -->
 <div class="screen active" id="dashboard">
   <div class="screen-center">
@@ -143,7 +171,7 @@
 
 <!-- Bottom Navigation -->
 <nav class="bottom-nav" role="tablist">
-  <a href="#dashboard" class="nav-btn active" data-screen="dashboard" role="tab" aria-label="Open Dashboard tab">
+  <a href="#dashboard" class="nav-btn" data-screen="dashboard" role="tab" aria-label="Open Dashboard tab">
     <i class="fas fa-home"></i>
     Dashboard
   </a>
