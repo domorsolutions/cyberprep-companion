@@ -1,174 +1,69 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>CyberPrep Companion</title>
-  <link rel="stylesheet" href="style.css">
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>CyberPrep Companion Dashboard</title>
+  <link rel="stylesheet" href="style.css" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css" />
 </head>
 <body>
-<div class="app-container">
-  <main id="app">
+  <div class="dashboard-container">
+    <h1>CyberPrep Companion Dashboard</h1>
 
-    <!-- Dashboard Screen -->
-    <div class="screen active" id="dashboard">
-      <div class="screen-center">
-        <h1 class="section-spacing">Dashboard</h1>
-
-        <section class="section-spacing">
-          <h2>Today's Tasks</h2>
-          <div class="task-card">
-            <span>Study: Domain 1 – Risk Management</span>
-            <span class="status">Pending</span>
-          </div>
-          <div class="task-card">
-            <span>Lab: Nmap Port Scanning</span>
-            <span class="status">Pending</span>
-          </div>
-        </section>
-
-        <section class="progress-container section-spacing">
-    <div class="progress-label" id="global-progress-label">Study Progress: 0%</div>
-    <div class="progress-bar">
-      <div class="progress-fill" id="global-progress-bar" style="width: 0%;"></div>
-    </div>
-  </section>
-
-        <section class="stats-grid section-spacing">
-          <div class="stat-card">
-            <div class="value" id="days-left">13</div>
-            <div class="label">Days Left</div>
-          </div>
-          <div class="stat-card">
-            <div class="value" id="labs-done">0</div>
-            <div class="label">Labs Done</div>
-          </div>
-        </section>
-        <section class="rank-tracker section-spacing">
-          <h2>Current Rank</h2>
-          <div class="rank-card">
-            <span class="rank-title">Trainee Analyst</span>
-            <div class="rank-xp-bar">
-              <div class="rank-xp-fill" style="width: 35%;"></div>
-            </div>
-            <div class="rank-xp-label">XP: 17 / 50 to next rank</div>
-          </div>
-        </section>
-
-        <p class="quote section-spacing">"Stay focused, stay secure: your CISSP journey starts today!"</p>
+    <section class="quest-card">
+      <div class="quest-header">
+        <span>✅ Today’s Quest</span>
+        <span class="title">Certified Challenger</span>
       </div>
-    </div>
+      <div class="progress-bar"><div class="progress-fill" style="width: 65%;"></div></div>
+      <p class="xp-label">New level: 350 XP</p>
+    </section>
 
-    <!-- Study Plan Screen -->
-    <div class="screen" id="study-plan">
-      <div class="screen-center">
-        <h1 class="section-spacing">Study Plan</h1>
-
-        <div class="study-section section-spacing" data-domain="domain1">
-          
-          <button class="study-toggle" data-target="domain1-content" data-label="Domain 1: Security & Risk Management">
-            <span class="arrow">▼</span> Domain 1: Security & Risk Management <span class="domain-level">Level 1</span>
-          </button>
-
-          <div class="domain-progress-bar">
-            <div class="domain-progress-fill" style="width: 0%;"></div>
-          </div>
-          <div class="domain-xp-label">XP: 0 / 5</div>
-          <div class="domain-cleared-tag">CLEARED</div>
-
-          <div class="study-content active" id="domain1-content">
-            <div class="study-plan-task">
-              <input type="checkbox" id="d1-task1">
-              <label for="d1-task1">Study the security documentation hierarchy (1 XP)</label>
-            </div>
-            <div class="study-plan-task">
-              <input type="checkbox" id="d1-task2">
-              <label for="d1-task2">Apply the CIA Triad to real-world scenarios (1 XP)</label>
-            </div>
-            <div class="study-plan-task">
-              <input type="checkbox" id="d1-task3">
-              <label for="d1-task3">Create a basic risk assessment matrix (1 XP)</label>
-            </div>
-            <div class="study-plan-task">
-              <input type="checkbox" id="d1-task4">
-              <label for="d1-task4">Compare ISO 27005 vs NIST 800-30 (1 XP)</label>
-            </div>
-            <div class="study-plan-task">
-              <input type="checkbox" id="d1-task5">
-              <label for="d1-task5">Read and reflect on ISC2 Code of Ethics (1 XP)</label>
-            </div>
-          </div>
-        </div>
-
-        <div class="study-plan-time section-spacing">
-          <label for="study-time" class="time-label">Select Study Time</label>
-          <select name="study-time" id="study-time">
-            <option value="8:00pm">8:00 PM - 9:30 PM</option>
-            <option value="9:30pm" selected>9:30 PM - 11:00 PM</option>
-            <option value="10:00pm">10:00 PM - 12:00 AM</option>
-            <option value="5:00am">5:00 AM - 6:30 AM</option>
-            <option value="custom">Custom</option>
-          </select>
-        </div>
+    <section class="grid-row">
+      <div class="quest-box">
+        <i class="fas fa-list icon"></i>
+        <p>Complete 5 flashcards from Domain 2</p>
+        <button>Start Quest</button>
       </div>
-    </div>
 
-    <!-- Lab Tracker Screen -->
-    <div class="screen" id="lab-tracker">
-      <div class="screen-center">
-        <h1 class="section-spacing">Lab Tracker</h1>
-        <p class="section-spacing">Log and monitor your vulnerability lab practice with tools like Nmap and Metasploit.</p>
+      <div class="streak-box">
+        <i class="fas fa-fire icon"></i>
+        <p><strong>Streak</strong><br>5 days<br><small>Keep the streak alive!</small></p>
       </div>
-    </div>
+    </section>
 
-    <!-- Resources Screen -->
-    <div class="screen" id="resources">
-      <div class="screen-center">
-        <h1 class="section-spacing">Resources</h1>
-        <p class="section-spacing">Access free CISSP study materials and lab tool guides.</p>
+    <section class="progress-section">
+      <h2>Progress Summary by Domain</h2>
+      <div class="domain-card">
+        <p>Security & Risk Management <span class="status">In Progress</span></p>
+        <div class="progress-bar"><div class="progress-fill" style="width: 45%;"></div></div>
       </div>
-    </div>
-
-    <!-- Settings Screen -->
-    <div class="screen" id="settings">
-      <div class="screen-center">
-        <h1 class="section-spacing">Settings</h1>
-        <p class="section-spacing">Customize your app experience and preferences.</p>
-        <label class="toggle-label section-spacing">
-          <input type="checkbox" id="dark-mode-toggle">
-          Enable Dark Mode
-        </label>
+      <div class="domain-card">
+        <p>Asset Security <span class="status">Complete</span></p>
+        <div class="progress-bar"><div class="progress-fill" style="width: 100%;"></div></div>
       </div>
-    </div>
-  </main>
-</div>
+      <div class="domain-card">
+        <p>Security Architecture <span class="status">Complete</span></p>
+        <div class="progress-bar"><div class="progress-fill" style="width: 100%;"></div></div>
+      </div>
+    </section>
 
-<!-- Bottom Navigation -->
-<nav class="bottom-nav" role="tablist">
-  <a href="#dashboard" class="nav-btn" data-screen="dashboard" role="tab" aria-label="Open Dashboard tab">
-    <i class="fas fa-home"></i>
-    Dashboard
-  </a>
-  <a href="#study-plan" class="nav-btn" data-screen="study-plan" role="tab" aria-label="Open Study Plan tab">
-    <i class="fas fa-calendar"></i>
-    Study Plan
-  </a>
-  <a href="#lab-tracker" class="nav-btn" data-screen="lab-tracker" role="tab" aria-label="Open Lab Tracker tab">
-    <i class="fas fa-flask"></i>
-    Lab Tracker
-  </a>
-  <a href="#resources" class="nav-btn" data-screen="resources" role="tab" aria-label="Open Resources tab">
-    <i class="fas fa-book"></i>
-    Resources
-  </a>
-  <a href="#settings" class="nav-btn" data-screen="settings" role="tab" aria-label="Open Settings tab">
-    <i class="fas fa-cog"></i>
-    Settings
-  </a>
-</nav>
+    <section class="rewards-section">
+      <h2>Recent Rewards</h2>
+      <ul>
+        <li><i class="fas fa-star"></i> Achievement +100 XP</li>
+        <li><i class="fas fa-trophy"></i> Milestone +75 XP</li>
+        <li><i class="fas fa-ribbon"></i> Badge +125 XP</li>
+      </ul>
+    </section>
 
-<script src="main.js"></script>
+    <footer class="bottom-nav">
+      <a class="active"><i class="fas fa-home"></i> Study Quest Board</a>
+      <a><i class="fas fa-clone"></i> Flashcards</a>
+      <a><i class="fas fa-vial"></i> Trial Gate</a>
+      <a><i class="fas fa-user"></i> Profile</a>
+    </footer>
+  </div>
 </body>
 </html>
-
