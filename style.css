@@ -1,204 +1,84 @@
-
-:root {
-  --primary: #333;
-  --accent: #4CAF50;
-  --bg-color: #f9f9f9;
-  --text-color: #222;
-  --space-xs: 0.5rem;
-  --space-sm: 1rem;
-  --space-md: 1.5rem;
-  --space-lg: 2rem;
-  --space-xl: 3rem;
-  --font-xs: 0.8rem;
-  --font-sm: 0.9rem;
-  --font-md: 1rem;
-  --font-lg: 1.25rem;
-  --font-xl: 1.5rem;
-}
-
-/* Global Reset */
-* {
+body {
+  background-color: rgb(3, 15, 26);
+  color: #ffffff;
+  font-family: 'Segoe UI', sans-serif;
   margin: 0;
   padding: 0;
-  box-sizing: border-box;
-  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
 }
 
-/* Base Layout */
-body {
-  min-height: 100vh;
-  background: var(--bg-color);
-  color: var(--text-color);
-  overflow-x: hidden;
+.dashboard-container {
+  padding: 20px;
+  max-width: 500px;
+  margin: auto;
 }
 
-.app-container {
-  max-width: 100%;
-  margin: 0 auto;
-  padding-bottom: 80px;
+h1, h2 {
+  color: #cceeff;
 }
 
-.screen {
-  display: block;
-  min-height: calc(100vh - 60px);
-  padding: 0 16px;
-  overflow-y: auto;
-  -webkit-overflow-scrolling: touch;
+.quest-card, .quest-box, .streak-box, .domain-card, .rewards-section {
+  background-color: rgb(0, 10, 17);
+  border-radius: 12px;
+  padding: 15px;
+  margin-bottom: 20px;
+  box-shadow: 0 0 4px rgba(0, 0, 0, 0.5);
 }
 
-.screen-center {
-  margin: 0 auto;
-  max-width: 600px;
-  padding: var(--space-md);
-  width: 100%;
+.quest-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.progress-bar {
+  background: #1a2b3c;
+  height: 10px;
+  border-radius: 5px;
+  overflow: hidden;
+  margin: 8px 0;
+}
+.progress-fill {
+  height: 100%;
+  background: #4ac1ff;
+  width: 0%;
+}
+
+.grid-row {
+  display: flex;
+  gap: 10px;
+  flex-wrap: wrap;
+}
+
+.quest-box, .streak-box {
+  flex: 1 1 48%;
   text-align: center;
 }
 
-.section-spacing {
-  margin-top: var(--space-lg);
-  margin-bottom: var(--space-lg);
+.quest-box button {
+  margin-top: 10px;
+  background: #4ac1ff;
+  border: none;
+  padding: 6px 12px;
+  border-radius: 8px;
+  color: #000;
+  font-weight: bold;
 }
 
-/* Navigation */
 .bottom-nav {
   position: fixed;
   bottom: 0;
-  left: 0;
-  right: 0;
-  background: #ffffff;
-  border-top: 1px solid #e0e0e0;
+  width: 100%;
+  background: rgb(0, 8, 13);
   display: flex;
   justify-content: space-around;
-  align-items: center;
-  height: 60px;
-  box-shadow: 0 -2px 5px rgba(0, 0, 0, 0.1);
-  z-index: 1000;
+  padding: 10px 0;
 }
-
-.nav-btn {
-  flex: 1;
+.bottom-nav a {
+  color: #ccc;
+  font-size: 0.8rem;
   text-align: center;
-  color: #666;
-  font-size: 12px;
-  text-decoration: none;
-  padding: 8px 0;
-  transition: color 0.2s, background-color 0.2s;
+  flex: 1;
 }
-
-.nav-btn:hover,
-.nav-btn:active {
-  background-color: rgba(0, 0, 0, 0.1);
-  color: var(--accent);
-}
-
-.nav-btn.active {
-  background-color: var(--accent);
-  color: #ffffff;
-  font-weight: 600;
-}
-
-.nav-btn i {
-  display: block;
-  font-size: 24px;
-  margin-bottom: 4px;
-}
-
-/* Progress Bars */
-.progress-container,
-.domain-progress-bar,
-.rank-xp-bar {
-  width: 100%;
-  height: 10px;
-  background: #e0e0e0;
-  border-radius: 5px;
-  overflow: hidden;
-  margin-top: var(--space-sm);
-  margin-bottom: var(--space-sm);
-}
-
-.progress-fill,
-.domain-progress-fill,
-.rank-xp-fill {
-  height: 100%;
-  background: var(--accent);
-  transition: width 0.3s ease;
-}
-
-/* Study Plan Tasks */
-.study-plan-task {
-  display: flex;
-  align-items: center;
-  background: #fff;
-  border-radius: 10px;
-  padding: 12px;
-  margin-bottom: var(--space-sm);
-  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
-}
-
-.study-plan-task input[type="checkbox"] {
-  margin-right: var(--space-sm);
-  width: 20px;
-  height: 20px;
-  accent-color: var(--accent);
-}
-
-/* Study Time Dropdown */
-#study-time {
-  -webkit-appearance: none;
-  -moz-appearance: none;
-  appearance: none;
-  width: 100%;
-  padding: 12px 16px;
-  font-size: 1rem;
-  border: 1px solid #ccc;
-  border-radius: 10px;
-  background: #ffffff;
-  color: var(--text-color);
-  background-image: url('data:image/svg+xml;utf8,<svg fill="%234a4a4a" height="12" width="12" viewBox="0 0 24 24"><path d="M7 10l5 5 5-5z"/></svg>');
-  background-repeat: no-repeat;
-  background-position: right 12px center;
-  background-size: 16px;
-  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
-  touch-action: manipulation;
-  transition: border 0.2s ease, background 0.2s ease;
-}
-
-#study-time:focus,
-#study-time:hover {
-  background-color: #fff;
-  color: var(--text-color);
-  outline: none;
-  border-color: #888;
-}
-
-/* Dark Mode Support */
-body.dark {
-  background: #111;
-  color: #f0f0f0;
-}
-
-body.dark #study-time {
-  background: #1e1e1e;
-  color: #f0f0f0;
-  border-color: #333;
-  background-image: url('data:image/svg+xml;utf8,<svg fill="%23ccc" height="12" width="12" viewBox="0 0 24 24"><path d="M7 10l5 5 5-5z"/></svg>');
-}
-
-/* Responsive Design */
-@media (max-width: 400px) {
-  body {
-    font-size: 0.9rem;
-  }
-  .screen-center {
-    padding: var(--space-sm);
-  }
-  .task-card,
-  .study-plan-task {
-    flex-direction: column;
-    align-items: flex-start;
-  }
-  .nav-btn {
-    font-size: 10px;
-    padding: 4px 0;
-  }
+.bottom-nav a.active {
+  color: #4ac1ff;
 }
